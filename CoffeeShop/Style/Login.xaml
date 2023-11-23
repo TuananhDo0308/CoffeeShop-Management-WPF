@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- FontFamily resource -->
+    <FontFamily x:Key="YourGoogleFont">\\mac\home\downloads\coffeeshop\coffeeshop\resource\font\poppins-black.ttf
+    </FontFamily>
+
+    <!-- Style for TextBox -->
+    <Style TargetType="TextBox">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontFamily" Value="{StaticResource }"/>
+    </Style>
+    <Style x:Key="Hatten">
+        <Setter Property="TextElement.FontFamily" Value="Resources/#HATTEN" />
+    </Style>
+
+</ResourceDictionary>
