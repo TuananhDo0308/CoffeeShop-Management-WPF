@@ -156,11 +156,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\Mac\\Home\\Downloads\\CoffeeShop\\CoffeeShop\\CoffeeShop.csproj",
+      "projectUniqueName": "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
       "projectName": "CoffeeShop",
-      "projectPath": "\\\\Mac\\Home\\Downloads\\CoffeeShop\\CoffeeShop\\CoffeeShop.csproj",
+      "projectPath": "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
       "packagesPath": "C:\\Users\\tuananhdo\\.nuget\\packages\\",
-      "outputPath": "\\\\Mac\\Home\\Downloads\\CoffeeShop\\CoffeeShop\\obj\\",
+      "outputPath": "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tuananhdo\\AppData\\Roaming\\NuGet\\NuGet.Config",

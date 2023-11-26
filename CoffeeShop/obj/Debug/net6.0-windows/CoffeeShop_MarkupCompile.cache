@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-\\Mac\Home\Downloads\CoffeeShop\CoffeeShop\obj\Debug\net6.0-windows\
+\\Mac\Home\Downloads\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\
 CoffeeShop
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-\\Mac\Home\Downloads\CoffeeShop\CoffeeShop\App.xaml
-42060220866
+\\Mac\Home\Downloads\COFFEE_SHOP\CoffeeShop\App.xaml
+51908854194
 
-4-1059442112
+10914721770
 197-850189497
-Adminstrator.xaml;MainWindow.xaml;Style\Login.xaml;Style\UIColor.xaml;
+Resources\MainResource.xaml;Style\Login.xaml;Style\UIColor.xaml;View\Adminstrator.xaml;View\Login.xaml;
 
 False
 
