@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj": {}
+    "C:\\Users\\honga\\Downloads\\COFFEE_SHOP-main\\COFFEE_SHOP-main\\CoffeeShop\\CoffeeShop.csproj": {}
   },
   "projects": {
-    "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj": {
+    "C:\\Users\\honga\\Downloads\\COFFEE_SHOP-main\\COFFEE_SHOP-main\\CoffeeShop\\CoffeeShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
+        "projectUniqueName": "C:\\Users\\honga\\Downloads\\COFFEE_SHOP-main\\COFFEE_SHOP-main\\CoffeeShop\\CoffeeShop.csproj",
         "projectName": "CoffeeShop",
-        "projectPath": "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
-        "packagesPath": "C:\\Users\\tuananhdo\\.nuget\\packages\\",
-        "outputPath": "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\obj\\",
+        "projectPath": "C:\\Users\\honga\\Downloads\\COFFEE_SHOP-main\\COFFEE_SHOP-main\\CoffeeShop\\CoffeeShop.csproj",
+        "packagesPath": "C:\\Users\\honga\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\honga\\Downloads\\COFFEE_SHOP-main\\COFFEE_SHOP-main\\CoffeeShop\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\tuananhdo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\honga\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +43,10 @@
             "MaterialDesignThemes": {
               "target": "Package",
               "version": "[4.9.0, )"
+            },
+            "Microsoft.Xaml.Behaviors.Wpf": {
+              "target": "Package",
+              "version": "[1.1.77, )"
             }
           },
           "imports": [
@@ -64,7 +68,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

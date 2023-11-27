@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-        xmlns:vm="clr-namespace:CoffeeShop.ViewModel"
+        xmlns:vm="clr-namespace:CoffeeShop.ViewModel" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Login" Height="400" Width="700"
         AllowsTransparency="True"
@@ -12,12 +12,21 @@
         WindowStyle="None"
         Background="Transparent"
         ResizeMode="NoResize"
-        MouseDown="Window_MouseDown"
         FontSize="16"
+        Name="loginWindow"
         DataContext="{StaticResource LoginVM}"
         FontFamily="{DynamicResource MaterialDesignFont }"
         >
-
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding MouseLeftButtonDownWindow}"
+                           CommandParameter="{Binding ElementName=loginWindow}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding setLoginWindow}"
+                               CommandParameter="{Binding ElementName=loginWindow}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Margin="20">
         <Grid.Effect>
             <DropShadowEffect BlurRadius="30"
@@ -54,7 +63,8 @@
                         Width="30"
                         Height="20"
                         Padding="5 0"
-                        Margin="0 5 0 0">
+                        Margin="0 5 0 0"
+                        Command="{Binding exitLogin}">
                     <materialDesign:PackIcon Foreground="Black" Opacity="0.4" Kind="Close" Height="20" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
               
@@ -62,7 +72,8 @@
                         Width="30"
                         Height="20"
                         Padding="5 0"
-                        Margin="0 5 0 0">
+                        Margin="0 5 0 0"
+                        Command="{Binding minimizeLogin}">
                     <materialDesign:PackIcon Foreground="Black" Opacity="0.4" Kind="Minimize" Height="20" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Button>
             </StackPanel>
@@ -85,15 +96,25 @@
                          materialDesign:HintAssist.Hint="User name"
                          materialDesign:HintAssist.FloatingOffset="0 -20"
                          BorderBrush="LightGray"
+                         Text="{Binding UserName}"
                          />
-                <PasswordBox Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                <PasswordBox x:Name="PasswordBox"
+                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                              materialDesign:HintAssist.Hint="Password"
                              materialDesign:HintAssist.FloatingOffset="0 -20"
                              BorderBrush="LightGray"
                              BorderThickness="0 0 0 1.5"
-                             Margin="0 10 0 0"/>
-                <TextBlock Text="Wrong username or password. Try again"
-                           FontSize="9"
+                             Margin="0 10 0 0"
+                             >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PasswordChanged">
+                            <i:InvokeCommandAction Command="{Binding getPassword}"
+                               CommandParameter="{Binding ElementName=PasswordBox}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </PasswordBox>
+                <TextBlock Text="{Binding Status}"
+                           FontSize="10"
                            FontWeight="ExtraLight"
                            Foreground="red"
                            Margin="0 10 0 0"/>
@@ -103,6 +124,7 @@
                         HorizontalAlignment="Center"
                         Margin="0 20 0 0"
                         Foreground="White"
+                        Command="{Binding loginCommand}"
                         />
             </StackPanel>
         </Grid>

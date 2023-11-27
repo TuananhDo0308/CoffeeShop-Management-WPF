@@ -7,7 +7,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="View\Adminstrator.xaml.cs">
+    <Compile Update="View\AdminView\Adminstrator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminView\ListItemView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -15,7 +18,10 @@
     <Page Update="Resources\MainResource.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\Adminstrator.xaml">
+    <Page Update="View\AdminView\Adminstrator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminView\ListItemView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Login.xaml">

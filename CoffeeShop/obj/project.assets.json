@@ -35,15 +35,15 @@
           "build/MaterialDesignThemes.targets": {}
         }
       },
-      "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
+      "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
         "type": "package",
         "compile": {
-          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
+          "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
+          "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll": {
             "related": ".pdb;.xml"
           }
         },
@@ -119,27 +119,24 @@
         "tools/VisualStudioToolsManifest.xml"
       ]
     },
-    "Microsoft.Xaml.Behaviors.Wpf/1.1.39": {
-      "sha512": "8PZKqw9QOcu42xk8puY4P1+EXHL9YGOR9b7qhaYx5cILHul456H073tj99vyPcCt0W0781T9RwHqkx507ZyUpQ==",
+    "Microsoft.Xaml.Behaviors.Wpf/1.1.77": {
+      "sha512": "MCu674ZETgU18EbxfwIlRpUPJ02YbZenLsMCXTkpeA7KUBpXfFaOUDlEO+7UWu5AFnUoydg+aQENJkuaZPheMQ==",
       "type": "package",
-      "path": "microsoft.xaml.behaviors.wpf/1.1.39",
+      "path": "microsoft.xaml.behaviors.wpf/1.1.77",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "lib/net45/Design/Microsoft.Xaml.Behaviors.Design.dll",
-        "lib/net45/Microsoft.Xaml.Behaviors.dll",
-        "lib/net45/Microsoft.Xaml.Behaviors.pdb",
-        "lib/net45/Microsoft.Xaml.Behaviors.xml",
-        "lib/net5.0-windows7.0/Design/Microsoft.Xaml.Behaviors.DesignTools.dll",
-        "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.dll",
-        "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.pdb",
-        "lib/net5.0-windows7.0/Microsoft.Xaml.Behaviors.xml",
-        "lib/netcoreapp3.1/Design/Microsoft.Xaml.Behaviors.DesignTools.dll",
-        "lib/netcoreapp3.1/Microsoft.Xaml.Behaviors.dll",
-        "lib/netcoreapp3.1/Microsoft.Xaml.Behaviors.pdb",
-        "lib/netcoreapp3.1/Microsoft.Xaml.Behaviors.xml",
-        "microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
+        "lib/net462/Design/Microsoft.Xaml.Behaviors.Design.dll",
+        "lib/net462/Design/Microsoft.Xaml.Behaviors.DesignTools.dll",
+        "lib/net462/Microsoft.Xaml.Behaviors.dll",
+        "lib/net462/Microsoft.Xaml.Behaviors.pdb",
+        "lib/net462/Microsoft.Xaml.Behaviors.xml",
+        "lib/net6.0-windows7.0/Design/Microsoft.Xaml.Behaviors.DesignTools.dll",
+        "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.dll",
+        "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.pdb",
+        "lib/net6.0-windows7.0/Microsoft.Xaml.Behaviors.xml",
+        "microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512",
         "microsoft.xaml.behaviors.wpf.nuspec",
         "tools/Install.ps1"
       ]
@@ -147,23 +144,24 @@
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
-      "MaterialDesignThemes >= 4.9.0"
+      "MaterialDesignThemes >= 4.9.0",
+      "Microsoft.Xaml.Behaviors.Wpf >= 1.1.77"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tuananhdo\\.nuget\\packages\\": {}
+    "C:\\Users\\honga\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
+      "projectUniqueName": "C:\\Users\\honga\\Downloads\\COFFEE_SHOP-main\\COFFEE_SHOP-main\\CoffeeShop\\CoffeeShop.csproj",
       "projectName": "CoffeeShop",
-      "projectPath": "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
-      "packagesPath": "C:\\Users\\tuananhdo\\.nuget\\packages\\",
-      "outputPath": "\\\\Mac\\Home\\Downloads\\COFFEE_SHOP\\CoffeeShop\\obj\\",
+      "projectPath": "C:\\Users\\honga\\Downloads\\COFFEE_SHOP-main\\COFFEE_SHOP-main\\CoffeeShop\\CoffeeShop.csproj",
+      "packagesPath": "C:\\Users\\honga\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\honga\\Downloads\\COFFEE_SHOP-main\\COFFEE_SHOP-main\\CoffeeShop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\tuananhdo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\honga\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -192,6 +190,10 @@
           "MaterialDesignThemes": {
             "target": "Package",
             "version": "[4.9.0, )"
+          },
+          "Microsoft.Xaml.Behaviors.Wpf": {
+            "target": "Package",
+            "version": "[1.1.77, )"
           }
         },
         "imports": [
@@ -213,7 +215,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
