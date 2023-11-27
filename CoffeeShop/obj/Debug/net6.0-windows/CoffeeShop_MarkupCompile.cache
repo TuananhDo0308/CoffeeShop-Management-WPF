@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\honga\Downloads\COFFEE_SHOP-main\COFFEE_SHOP-main\CoffeeShop\obj\Debug\net6.0-windows\
+E:\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\
 CoffeeShop
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\honga\Downloads\COFFEE_SHOP-main\COFFEE_SHOP-main\CoffeeShop\App.xaml
+E:\COFFEE_SHOP\CoffeeShop\App.xaml
 6-1915577875
 
 11885794393
-197-21428402
+197-2084712151
 Resources\MainResource.xaml;Style\Login.xaml;Style\UIColor.xaml;View\AdminView\Adminstrator.xaml;View\AdminView\ListItemView.xaml;View\Login.xaml;
 
 False

@@ -93,7 +93,7 @@ namespace CoffeeShop.ViewModel
             {
                 Adminstrator adminstrator = new Adminstrator();
                 adminstrator.Show();
-                loginWindow.Hide();
+                loginWindow.Close();
             }
         }
         public static string Base64Encode(string plainText)

@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "XwRs8OQBbnSA3KqeaLhzJM6/22ejcrihZ9sd0UsrCJYGGok+673VGBCDuYy66OzxoSlZWbkBr7WY1HZUs3ZfIw==",
+  "dgSpecHash": "kyYroa4k9NG9dQNHYGNsGGUoZX8g21zGo92HOMLOKh61isn5XzKJVRKlD0jWEm5oQiDsz54x8Ox5GvziK8KLqA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\honga\\Downloads\\COFFEE_SHOP-main\\COFFEE_SHOP-main\\CoffeeShop\\CoffeeShop.csproj",
+  "projectFilePath": "E:\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\honga\\.nuget\\packages\\materialdesigncolors\\2.1.4\\materialdesigncolors.2.1.4.nupkg.sha512",
-    "C:\\Users\\honga\\.nuget\\packages\\materialdesignthemes\\4.9.0\\materialdesignthemes.4.9.0.nupkg.sha512",
-    "C:\\Users\\honga\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.77\\microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512"
+    "C:\\Users\\QuocAn\\.nuget\\packages\\materialdesigncolors\\2.1.4\\materialdesigncolors.2.1.4.nupkg.sha512",
+    "C:\\Users\\QuocAn\\.nuget\\packages\\materialdesignthemes\\4.9.0\\materialdesignthemes.4.9.0.nupkg.sha512",
+    "C:\\Users\\QuocAn\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.77\\microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512"
   ],
   "logs": []
 }
