@@ -10,7 +10,19 @@
     <Compile Update="View\AdminView\Adminstrator.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\AdminView\ConfirmBill.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminView\HistoryPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="View\AdminView\ListItemView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminView\PosPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminView\MenuPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -21,7 +33,16 @@
     <Page Update="View\AdminView\Adminstrator.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="View\AdminView\ConfirmBill.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminView\HistoryPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="View\AdminView\ListItemView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminView\PosPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Login.xaml">
@@ -31,6 +52,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Style\UIColor.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminView\MenuPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

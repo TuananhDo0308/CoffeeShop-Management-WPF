@@ -1,0 +1,185 @@
+﻿<Page x:Class="CoffeeShop.View.AdminView.PosPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:local="clr-namespace:CoffeeShop.View.AdminView"
+      mc:Ignorable="d" 
+      DataContext="{StaticResource PosVM}"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PosPage">
+
+    <Grid Background="White">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+           
+            <Grid Grid.Column="0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center">
+                
+                <TextBox    VerticalAlignment="Top"
+                            Margin="20 0 0 0"
+                                Width="300"
+                                Padding="20 10"
+                                materialDesign:HintAssist.Hint="Floating hint in a box"                                
+                                />
+
+            </Grid>
+            <Grid Grid.Column="1"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <Border CornerRadius="1000"
+                            Width="30"
+                            Height="30"
+                            Background="Black">
+                        <Image/>
+                    </Border>
+                    <StackPanel Margin="10 0 0 0"
+                                Orientation="Vertical"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <TextBlock x:Name="Name" Text="Tuan Anh"/>
+                        <TextBlock x:Name="Role" Text="Staff"/>
+                    </StackPanel>
+                </StackPanel>
+                
+            </Grid>
+            
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="13*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <StackPanel Orientation="Horizontal"
+                                Margin="30 0 0 0"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left">
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                Width="50"
+                                Content="All"
+                                Margin="10 0 10 0">
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                Width="80"
+                                Content="Coffee"
+                                Margin="10 0 10 0">
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                Width="100"
+                                Content="Ice Blend"
+                                Margin="10 0 10 0">
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                Width="70"
+                                Content="Cake"
+                                Margin="10 0 10 0">
+                        </Button>
+
+                    </StackPanel>
+                    
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ListView></ListView>
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1" Margin="0 0 20 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="170"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Vertical"
+                            VerticalAlignment="Top">
+                    <TextBlock Text="Cart:" FontSize="20" FontWeight="Bold"/>
+                    <StackPanel Margin="0 10 0 0" Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                Width="70"
+                                Padding="0"
+                                Content="Dine in"
+                                Background="Black"
+                                Foreground="White"
+                                BorderBrush="Black"
+                                Margin="0 0 10 0">
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                         Width="70"
+                         Padding="0"
+                         Content="Take away"
+                         Background="Black"
+                         Foreground="White"
+                         BorderBrush="Black"
+                         Margin="10 0 0 0">
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+                <ListView Grid.Row="1"
+                        Height="200">
+                        
+                    </ListView>
+                    <Grid Grid.Row="2">
+                    <StackPanel>
+                        <TextBox    VerticalAlignment="Top"
+                                        Width="200"
+                                        Padding="10"
+                                        materialDesign:HintAssist.Hint="Enter Voucher"                                
+                                        />
+                        <Grid Margin="0 10 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Vertical">
+                            <TextBlock Text="Items: "/>
+                            <TextBlock Text="Discount: "/>
+                            <TextBlock Text="Total: "
+                                       FontSize="18"
+                                       Margin="0 10 0 0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
+
+                            <TextBlock x:Name="PriceItem" Text="100$"/>
+                            <TextBlock x:Name="Discount" Text="100$"/>
+                            <TextBlock x:Name="Total" Text="100$"
+                                       FontSize="18" 
+                                       Margin="0 10 0 0"/>
+                        </StackPanel>
+                        </Grid>
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                            Command="{Binding placeOrder}"  
+                            Width="100"
+                              Padding="0"
+                              Content="Take away"
+                              Background="Black"
+                              Foreground="White"
+                              BorderBrush="Black"
+                              Margin="0 10 0 0">
+                    </Button>
+                    </StackPanel>
+                </Grid>
+               
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

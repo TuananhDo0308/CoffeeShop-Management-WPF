@@ -1,4 +1,4 @@
-﻿using CoffeeShop.Model;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,8 @@ using System.Windows.Input;
 using System.Windows;
 using System.Collections;
 using System.Windows.Navigation;
+using CoffeeShop.Service;
+using CoffeeShop.Models;
 
 namespace CoffeeShop.ViewModel
 {
@@ -17,7 +19,6 @@ namespace CoffeeShop.ViewModel
     {
         
         public Window loginWindow { get; set; }
-        public Button loginButton { get; set; }
 
 
         private string _status;
@@ -50,6 +51,7 @@ namespace CoffeeShop.ViewModel
         {
             loginCommand = new RelayCommand<Button>((p) => { return true; } , async (p) =>
             {
+                Status="";
                 string username = UserName;
                 string password = Password;
                 if (username==null || password==null)
@@ -87,13 +89,20 @@ namespace CoffeeShop.ViewModel
                 loginWindow.WindowState = WindowState.Minimized;
             });
         }
-        private void CheckLogin(string user,string password)
+        private async Task CheckLogin(string user, string password)
         {
-            if(true)
+            (bool loginSuccess, string message, Nhanvien staff) = await StaffService.Ins.Login(user, password);
+
+            if (loginSuccess)
             {
                 Adminstrator adminstrator = new Adminstrator();
                 adminstrator.Show();
                 loginWindow.Close();
+            }
+            else
+            {
+                // Handle login failure, show an error message, etc.
+                Status = message;
             }
         }
         public static string Base64Encode(string plainText)

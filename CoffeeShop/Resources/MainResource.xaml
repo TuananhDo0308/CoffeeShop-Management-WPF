@@ -4,4 +4,6 @@
                     xmlns:viewmodelAdmin="clr-namespace:CoffeeShop.ViewModel.Admin">
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
     <viewmodelAdmin:AdminViewModel x:Key="AdminVM"></viewmodelAdmin:AdminViewModel>
+    <viewmodelAdmin:PosPageViewModel x:Key="PosVM"></viewmodelAdmin:PosPageViewModel>
+    <viewmodelAdmin:MenuViewModel x:Key="MenuVM"></viewmodelAdmin:MenuViewModel>
 </ResourceDictionary>
