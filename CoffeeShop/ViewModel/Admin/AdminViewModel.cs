@@ -26,6 +26,7 @@ namespace CoffeeShop.ViewModel.Admin
         public ICommand minimizeAdmin { get; set; }
         public ICommand posView { get; set; }
         public ICommand menuView { get; set; }
+        public ICommand logOut { get; set; }
         public ICommand historyView { get; set; }
 
         public AdminViewModel()
@@ -71,6 +72,12 @@ namespace CoffeeShop.ViewModel.Admin
             });
             exitAdmin = new RelayCommand<Button>((p) => { return true; }, (p) =>
             {
+                adminWindow.Close();
+            });
+            logOut = new RelayCommand<Button>((p) => { return true; }, (p) =>
+            {
+                Login login = new Login();
+                login.Show();
                 adminWindow.Close();
             });
         }

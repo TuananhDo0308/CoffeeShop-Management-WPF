@@ -25,25 +25,26 @@ namespace CoffeeShop.Service
             private set => _ins = value;
         }
 
-        public async Task<(bool, string, Nhanvien)> Login(string username, string password)
+        public async Task<(bool, string, Employee)> Login(string username, string password)
         {
             try
             {
                 using (var context = new COFFEESHOPContext())
                 {
-                    var staff = await context.Nhanviens
-                    .Where(s => s.Tendn == username && s.Matkhau == password)
-                    .Select(s => new Nhanvien
+                    var staff = await context.Employees
+                    .Where(s => s.Username == username && s.Pass == password)
+                    .Select(s => new Employee
                     {
-                        Manv = s.Manv,
-                        Hoten = s.Hoten,
-                        Ngaysinh = s.Ngaysinh,
-                        Diachi = s.Diachi,
-                        Gioitinh = s.Gioitinh,
-                        Sdt = s.Sdt,
-                        Tendn = s.Tendn,
-                        Matkhau = s.Matkhau,
-                        Tenvt = s.Tenvt
+                        IdEm = s.IdEm,
+                        ImageData = s.ImageData,
+                        NameEm = s.NameEm,
+                        DayOfBirth = s.DayOfBirth,
+                        PhoneNum = s.PhoneNum,
+                        AddressEm = s.AddressEm,
+                        Sex = s.Sex,
+                        NameRole = s.NameRole,
+                        Username = s.Username,
+                        Pass = s.Pass
                     })
                     .FirstOrDefaultAsync();
 

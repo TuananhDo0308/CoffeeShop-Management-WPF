@@ -1,4 +1,7 @@
-﻿using System;
+﻿//using CoffeeShop.Models;
+using CoffeeShop.Models;
+using CoffeeShop.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +16,6 @@ namespace CoffeeShop
     /// </summary>
     public partial class App : Application
     {
+       public static Employee MainUser { get; set; } = new Employee();
     }
 }

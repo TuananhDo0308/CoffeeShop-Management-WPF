@@ -5,17 +5,29 @@ namespace CoffeeShop.Models
 {
     public partial class Menu
     {
+        public Menu(int id, byte[] imageData, string type, string nameFood, string description, decimal price, ICollection<Billdetail> billdetails)
+        {
+            this.Id = id;
+            this.ImageData = imageData;
+            this.NameFood = nameFood;
+            this.Type = type;
+            this.Price = price;
+            this.Description = description;
+            this.Price = price;
+            this.Billdetails=billdetails;
+        }
         public Menu()
         {
-            Chitiethoadons = new HashSet<Chitiethoadon>();
+           // Billdetails = new HashSet<Billdetail>();
         }
 
-        public int Mama { get; set; }
-        public int? Maloai { get; set; }
-        public string? Tenmonan { get; set; }
-        public decimal? Gia { get; set; }
+        public int Id { get; set; }
+        public byte[]? ImageData { get; set; }
+        public string? Type { get; set; }
+        public string? NameFood { get; set; }
+        public string? Description { get; set; }
+        public decimal? Price { get; set; }
 
-        public virtual Loaimon? MaloaiNavigation { get; set; }
-        public virtual ICollection<Chitiethoadon> Chitiethoadons { get; set; }
+        public virtual ICollection<Billdetail> Billdetails { get; set; }
     }
 }

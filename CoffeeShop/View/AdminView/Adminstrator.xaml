@@ -138,6 +138,7 @@
                 </StackPanel>
 
                 <Button Grid.Row="2"
+                        Command="{Binding logOut}"
                         Style="{StaticResource MaterialDesignFlatButton}"
                         Width="60"
                         Height="60"

@@ -7,9 +7,24 @@
       xmlns:local="clr-namespace:CoffeeShop.View.AdminView"
       mc:Ignorable="d" 
       DataContext="{StaticResource PosVM}"
+      Name="Pospage"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PosPage">
-
+      Title="Pospage">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding firstLoad}"
+                        CommandParameter="{Binding ElementName=Pospage}" />
+         </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding getListBox}"
+                                        CommandParameter="{Binding ElementName=listBox}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding getSearchBox}"
+                                         CommandParameter="{Binding ElementName=searchBox}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
     <Grid Background="White">
         
         <Grid.RowDefinitions>
@@ -26,13 +41,21 @@
             <Grid Grid.Column="0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Center">
-                
+
                 <TextBox    VerticalAlignment="Top"
                             Margin="20 0 0 0"
+                            Text="{Binding SearchBox}"
                                 Width="300"
+                            Name="searchBox"
                                 Padding="20 10"
-                                materialDesign:HintAssist.Hint="Floating hint in a box"                                
-                                />
+                                materialDesign:HintAssist.Hint="Floating hint in a box">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding findProducts}"/>
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+                </TextBox>
 
             </Grid>
             <Grid Grid.Column="1"
@@ -51,8 +74,8 @@
                                 Orientation="Vertical"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
-                        <TextBlock x:Name="Name" Text="Tuan Anh"/>
-                        <TextBlock x:Name="Role" Text="Staff"/>
+                        <TextBlock x:Name="Name" Text="{Binding NameStaff}"/>
+                        <TextBlock x:Name="Role" Text="{Binding RoleStaff}"/>
                     </StackPanel>
                 </StackPanel>
                 
@@ -99,7 +122,49 @@
                     
                 </Grid>
                 <Grid Grid.Row="1">
-                    <ListView></ListView>
+                    <ListBox ItemsSource="{Binding MenuList}" SelectedItem="{Binding SelectedProduct}" Name="listBox" VerticalAlignment="Top" HorizontalContentAlignment="Right" d:ItemsSource="{d:SampleData ItemCount=12}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="4" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:Card  Width="250" Height="150" >
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="1*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0">
+                                            <Border Background="Beige"/>
+                                        </Grid>
+                                        <Grid Margin="10" Grid.Column="1">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="1*"/>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="30"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid Grid.Row="0">
+                                                <TextBlock Text="{Binding NameFood}"  FontSize="20" FontWeight="Black"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1">
+                                                <TextBlock  TextWrapping="Wrap" Text="{Binding Description}" FontSize="10" FontWeight="Medium"/>
+                                            </Grid>
+                                            <Grid Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                                <TextBlock Text="{Binding Price}" FontSize="18" FontWeight="Bold"/>
+                                            </Grid>
+                                            <Grid Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                                                <Button Content="Add" Height="25"></Button>
+                                            </Grid>
+
+                                        </Grid>
+                                    </Grid>
+                                </materialDesign:Card>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
             </Grid>
             <Grid Grid.Column="1" Margin="0 0 20 0">

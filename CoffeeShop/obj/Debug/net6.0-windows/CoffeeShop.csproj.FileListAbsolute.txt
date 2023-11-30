@@ -107,7 +107,6 @@ C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\Style\UIColor.bam
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\Adminstrator.baml
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\App.baml
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\Adminstrator.g.cs
-C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\ListItemView.g.cs
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\PosPage.g.cs
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\Login.g.cs
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\App.g.cs
@@ -115,7 +114,6 @@ C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\GeneratedInternal
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\CoffeeShop_MarkupCompile.cache
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\CoffeeShop_MarkupCompile.lref
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\Resources\MainResource.baml
-C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\ListItemView.baml
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\PosPage.baml
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\Login.baml
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\CoffeeShop.g.resources
@@ -174,3 +172,5 @@ C:\Users\honga\COFFEE_SHOP\CoffeeShop\bin\Debug\net6.0-windows\runtimes\win-arm6
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\bin\Debug\net6.0-windows\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\bin\Debug\net6.0-windows\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\bin\Debug\net6.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\AddFood.g.cs
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\AddFood.baml

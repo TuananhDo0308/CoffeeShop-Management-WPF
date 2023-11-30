@@ -16,195 +16,185 @@ namespace CoffeeShop.Models
         {
         }
 
-        public virtual DbSet<Chitiethoadon> Chitiethoadons { get; set; } = null!;
-        public virtual DbSet<Hoadon> Hoadons { get; set; } = null!;
-        public virtual DbSet<Khachhang> Khachhangs { get; set; } = null!;
-        public virtual DbSet<Loaimon> Loaimons { get; set; } = null!;
+        public virtual DbSet<Bill> Bills { get; set; } = null!;
+        public virtual DbSet<Billdetail> Billdetails { get; set; } = null!;
+        public virtual DbSet<Customer> Customers { get; set; } = null!;
+        public virtual DbSet<Employee> Employees { get; set; } = null!;
         public virtual DbSet<Menu> Menus { get; set; } = null!;
-        public virtual DbSet<Nhanvien> Nhanviens { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Data Source=.\\SQLEXPRESS;Initial Catalog=COFFEESHOP;Integrated Security=True;Trust Server Certificate=True");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Chitiethoadon>(entity =>
+            modelBuilder.Entity<Bill>(entity =>
             {
-                entity.HasKey(e => new { e.Mahd, e.Mama })
-                    .HasName("PK__CHITIETH__563CD650BD6234C7");
+                entity.HasKey(e => e.IdBill)
+                    .HasName("PK__BILL__74108A9033C831D5");
 
-                entity.ToTable("CHITIETHOADON");
+                entity.ToTable("BILL");
 
-                entity.Property(e => e.Mahd).HasColumnName("MAHD");
+                entity.Property(e => e.IdBill)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ID_BILL");
 
-                entity.Property(e => e.Mama).HasColumnName("MAMA");
+                entity.Property(e => e.DayBill)
+                    .HasColumnType("date")
+                    .HasColumnName("DAY_BILL");
+
+                entity.Property(e => e.IdCustomer).HasColumnName("ID_CUSTOMER");
+
+                entity.Property(e => e.IdEm).HasColumnName("ID_EM");
+
+                entity.Property(e => e.Price)
+                    .HasColumnType("decimal(10, 0)")
+                    .HasColumnName("PRICE");
+
+                entity.Property(e => e.StatusBill)
+                    .HasMaxLength(20)
+                    .IsUnicode(false)
+                    .HasColumnName("STATUS_BILL");
+
+                entity.HasOne(d => d.IdCustomerNavigation)
+                    .WithMany(p => p.Bills)
+                    .HasForeignKey(d => d.IdCustomer)
+                    .HasConstraintName("FK__BILL__ID_CUSTOME__403A8C7D");
+
+                entity.HasOne(d => d.IdEmNavigation)
+                    .WithMany(p => p.Bills)
+                    .HasForeignKey(d => d.IdEm)
+                    .HasConstraintName("FK__BILL__ID_EM__3F466844");
+            });
+
+            modelBuilder.Entity<Billdetail>(entity =>
+            {
+                entity.HasKey(e => new { e.IdBill, e.Id })
+                    .HasName("PK__BILLDETA__1731C45229C78DDA");
+
+                entity.ToTable("BILLDETAIL");
+
+                entity.Property(e => e.IdBill).HasColumnName("ID_BILL");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Soluong).HasColumnName("SOLUONG");
 
-                entity.HasOne(d => d.MahdNavigation)
-                    .WithMany(p => p.Chitiethoadons)
-                    .HasForeignKey(d => d.Mahd)
+                entity.HasOne(d => d.IdNavigation)
+                    .WithMany(p => p.Billdetails)
+                    .HasForeignKey(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CHITIETHOA__MAHD__45F365D3");
+                    .HasConstraintName("FK__BILLDETAIL__ID__440B1D61");
 
-                entity.HasOne(d => d.MamaNavigation)
-                    .WithMany(p => p.Chitiethoadons)
-                    .HasForeignKey(d => d.Mama)
+                entity.HasOne(d => d.IdBillNavigation)
+                    .WithMany(p => p.Billdetails)
+                    .HasForeignKey(d => d.IdBill)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CHITIETHOA__MAMA__46E78A0C");
+                    .HasConstraintName("FK__BILLDETAI__ID_BI__4316F928");
             });
 
-            modelBuilder.Entity<Hoadon>(entity =>
+            modelBuilder.Entity<Customer>(entity =>
             {
-                entity.HasKey(e => e.Mahd)
-                    .HasName("PK__HOADON__603F20CE5F27138D");
+                entity.HasKey(e => e.IdCustomer)
+                    .HasName("PK__CUSTOMER__7F6B0B8ACBDAE12B");
 
-                entity.ToTable("HOADON");
+                entity.ToTable("CUSTOMER");
 
-                entity.Property(e => e.Mahd)
+                entity.Property(e => e.IdCustomer)
                     .ValueGeneratedNever()
-                    .HasColumnName("MAHD");
+                    .HasColumnName("ID_CUSTOMER");
 
-                entity.Property(e => e.Gia)
-                    .HasColumnType("decimal(10, 0)")
-                    .HasColumnName("GIA");
-
-                entity.Property(e => e.Makh).HasColumnName("MAKH");
-
-                entity.Property(e => e.Manv).HasColumnName("MANV");
-
-                entity.Property(e => e.Ngaylap)
-                    .HasColumnType("date")
-                    .HasColumnName("NGAYLAP");
-
-                entity.Property(e => e.Tinhtrang)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .HasColumnName("TINHTRANG");
-
-                entity.HasOne(d => d.MakhNavigation)
-                    .WithMany(p => p.Hoadons)
-                    .HasForeignKey(d => d.Makh)
-                    .HasConstraintName("FK__HOADON__MAKH__4316F928");
-
-                entity.HasOne(d => d.ManvNavigation)
-                    .WithMany(p => p.Hoadons)
-                    .HasForeignKey(d => d.Manv)
-                    .HasConstraintName("FK__HOADON__MANV__4222D4EF");
-            });
-
-            modelBuilder.Entity<Khachhang>(entity =>
-            {
-                entity.HasKey(e => e.Makh)
-                    .HasName("PK__KHACHHAN__603F592C51CACFCB");
-
-                entity.ToTable("KHACHHANG");
-
-                entity.Property(e => e.Makh)
-                    .ValueGeneratedNever()
-                    .HasColumnName("MAKH");
-
-                entity.Property(e => e.Hoten)
+                entity.Property(e => e.NameCustomer)
                     .HasMaxLength(200)
-                    .HasColumnName("HOTEN");
+                    .HasColumnName("NAME_CUSTOMER");
             });
 
-            modelBuilder.Entity<Loaimon>(entity =>
+            modelBuilder.Entity<Employee>(entity =>
             {
-                entity.HasKey(e => e.Maloai)
-                    .HasName("PK__LOAIMON__2F633F23518B8EDC");
+                entity.HasKey(e => e.IdEm)
+                    .HasName("PK__EMPLOYEE__8B62DF49CC0CD2EB");
 
-                entity.ToTable("LOAIMON");
+                entity.ToTable("EMPLOYEE");
 
-                entity.Property(e => e.Maloai)
+                entity.HasIndex(e => e.Username, "UQ__EMPLOYEE__B15BE12EE0407FD1")
+                    .IsUnique();
+
+                entity.Property(e => e.IdEm)
                     .ValueGeneratedNever()
-                    .HasColumnName("MALOAI");
+                    .HasColumnName("ID_EM");
 
-                entity.Property(e => e.Tenloai)
+                entity.Property(e => e.AddressEm)
+                    .HasMaxLength(4000)
+                    .HasColumnName("ADDRESS_EM");
+
+                entity.Property(e => e.DayOfBirth)
+                    .HasColumnType("date")
+                    .HasColumnName("DAY_OF_BIRTH");
+
+                entity.Property(e => e.ImageData)
+                    .HasColumnType("image")
+                    .HasColumnName("IMAGE_DATA");
+
+                entity.Property(e => e.NameEm)
+                    .HasMaxLength(4000)
+                    .HasColumnName("NAME_EM");
+
+                entity.Property(e => e.NameRole)
                     .HasMaxLength(100)
-                    .HasColumnName("TENLOAI");
+                    .HasColumnName("NAME_ROLE");
+
+                entity.Property(e => e.Pass)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("PASS");
+
+                entity.Property(e => e.PhoneNum)
+                    .HasMaxLength(15)
+                    .IsUnicode(false)
+                    .HasColumnName("PHONE_NUM");
+
+                entity.Property(e => e.Sex)
+                    .HasMaxLength(3)
+                    .HasColumnName("SEX");
+
+                entity.Property(e => e.Username)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("USERNAME");
             });
 
             modelBuilder.Entity<Menu>(entity =>
             {
-                entity.HasKey(e => e.Mama)
-                    .HasName("PK__MENU__603F69E21BD82987");
-
                 entity.ToTable("MENU");
 
-                entity.Property(e => e.Mama)
+                entity.Property(e => e.Id)
                     .ValueGeneratedNever()
-                    .HasColumnName("MAMA");
+                    .HasColumnName("ID");
 
-                entity.Property(e => e.Gia)
+                entity.Property(e => e.Description)
+                    .HasMaxLength(500)
+                    .HasColumnName("DESCRIPTION");
+
+                entity.Property(e => e.ImageData)
+                    .HasColumnType("image")
+                    .HasColumnName("IMAGE_DATA");
+
+                entity.Property(e => e.NameFood)
+                    .HasMaxLength(200)
+                    .HasColumnName("NAME_FOOD");
+
+                entity.Property(e => e.Price)
                     .HasColumnType("decimal(7, 0)")
-                    .HasColumnName("GIA");
+                    .HasColumnName("PRICE");
 
-                entity.Property(e => e.Maloai).HasColumnName("MALOAI");
-
-                entity.Property(e => e.Tenmonan)
-                    .HasMaxLength(200)
-                    .HasColumnName("TENMONAN");
-
-                entity.HasOne(d => d.MaloaiNavigation)
-                    .WithMany(p => p.Menus)
-                    .HasForeignKey(d => d.Maloai)
-                    .HasConstraintName("FK__MENU__MALOAI__3D5E1FD2");
-            });
-
-            modelBuilder.Entity<Nhanvien>(entity =>
-            {
-                entity.HasKey(e => e.Manv)
-                    .HasName("PK__NHANVIEN__603F5114A28FFD50");
-
-                entity.ToTable("NHANVIEN");
-
-                entity.HasIndex(e => e.Tendn, "UQ__NHANVIEN__A58D77814E39BFF6")
-                    .IsUnique();
-
-                entity.Property(e => e.Manv)
-                    .ValueGeneratedNever()
-                    .HasColumnName("MANV");
-
-                entity.Property(e => e.Diachi)
-                    .HasMaxLength(200)
-                    .HasColumnName("DIACHI");
-
-                entity.Property(e => e.Gioitinh)
-                    .HasMaxLength(3)
-                    .HasColumnName("GIOITINH");
-
-                entity.Property(e => e.Hoten)
-                    .HasMaxLength(200)
-                    .HasColumnName("HOTEN");
-
-                entity.Property(e => e.Matkhau)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("MATKHAU");
-
-                entity.Property(e => e.Ngaysinh)
-                    .HasColumnType("date")
-                    .HasColumnName("NGAYSINH");
-
-                entity.Property(e => e.Sdt)
-                    .HasMaxLength(15)
-                    .IsUnicode(false)
-                    .HasColumnName("SDT");
-
-                entity.Property(e => e.Tendn)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("TENDN");
-
-                entity.Property(e => e.Tenvt)
+                entity.Property(e => e.Type)
                     .HasMaxLength(100)
-                    .HasColumnName("TENVT");
+                    .HasColumnName("TYPE");
             });
 
             OnModelCreatingPartial(modelBuilder);

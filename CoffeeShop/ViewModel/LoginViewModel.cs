@@ -12,6 +12,7 @@ using System.Collections;
 using System.Windows.Navigation;
 using CoffeeShop.Service;
 using CoffeeShop.Models;
+using CoffeeShop.ViewModel.Admin;
 
 namespace CoffeeShop.ViewModel
 {
@@ -20,7 +21,7 @@ namespace CoffeeShop.ViewModel
         
         public Window loginWindow { get; set; }
 
-
+        public Employee User { get; set; }
         private string _status;
         public string Status
         {
@@ -91,17 +92,17 @@ namespace CoffeeShop.ViewModel
         }
         private async Task CheckLogin(string user, string password)
         {
-            (bool loginSuccess, string message, Nhanvien staff) = await StaffService.Ins.Login(user, password);
-
+            (bool loginSuccess, string message, Employee staff) = await StaffService.Ins.Login(user, password);
+            
             if (loginSuccess)
             {
                 Adminstrator adminstrator = new Adminstrator();
                 adminstrator.Show();
+                App.MainUser = staff;
                 loginWindow.Close();
             }
             else
             {
-                // Handle login failure, show an error message, etc.
                 Status = message;
             }
         }
@@ -110,7 +111,6 @@ namespace CoffeeShop.ViewModel
             var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
             return System.Convert.ToBase64String(plainTextBytes);
         }
-
     }
 }
 

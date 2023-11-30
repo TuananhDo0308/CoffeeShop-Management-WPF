@@ -9,8 +9,21 @@
       DataContext="{StaticResource MenuVM}"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MenuPage">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding firstLoad}"
+                        CommandParameter="{Binding ElementName=Pospage}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding getListBox}"
+                CommandParameter="{Binding ElementName=listBox}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding getSearchBox}"
+                CommandParameter="{Binding ElementName=searchBox}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Background="White">
-       
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="5*"/>
@@ -30,8 +43,16 @@
                         Margin="20 0 0 0"
                             Width="300"
                             Padding="20 10"
+                            Name="searchBox"
                             materialDesign:HintAssist.Hint="Floating hint in a box"                                
-                            />
+                            >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding findProducts}"/>
+                        </i:EventTrigger>
+
+                    </i:Interaction.Triggers>
+                </TextBox>
 
             </Grid>
             <Grid Grid.Column="1"
@@ -50,8 +71,8 @@
                             Orientation="Vertical"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
-                        <TextBlock x:Name="Name" Text="Tuan Anh"/>
-                        <TextBlock x:Name="Role" Text="Staff"/>
+                        <TextBlock x:Name="Name" Text="{Binding NameStaff }"/>
+                        <TextBlock x:Name="Role" Text="{Binding RoleStaff}"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -95,112 +116,70 @@
 
                 </StackPanel>
                 <Grid Grid.Column="1">
+                    <StackPanel Orientation="Horizontal">
                     <Button Style="{StaticResource MaterialDesignRaisedButton}"
                             Grid.Column="1"
-                            Command="{Binding addFood}"
+                            Command="{Binding updateProducts}"
+                            Width="70"
+                            Background="Black"
+                            Foreground="White"
+                            Content="Update"
+                            Margin="10 0 10 0">
+                    </Button>
+                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                            Grid.Column="1"
+                            Command="{Binding addFoodWindow}"
                             Width="70"
                             Background="Black"
                             Foreground="White"
                             Content="Add"
                             Margin="10 0 10 0">
                     </Button>
+                    </StackPanel>
                 </Grid>
 
 
             </Grid>
             <Grid Grid.Row="1">
-                <ListBox ItemsSource="{Binding MenuList}" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox ItemsSource="{Binding MenuList,Mode=TwoWay}" Name="listBox"  VerticalAlignment="Top" HorizontalContentAlignment="Right" d:ItemsSource="{d:SampleData ItemCount=12}"
+                         SelectedItem="{Binding SelectedProduct}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <UniformGrid Columns="4" />
+                            <UniformGrid Columns="3" />
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <materialDesign:Card BorderThickness="1"
-                             UniformCornerRadius="5"
-                             Margin="20,0,0,0"
-                             Width="200"
-                             Height="270">
+                            <materialDesign:Card  Width="250" Height="150" >
                                 <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="8*"></RowDefinition>
-                                        <RowDefinition Height="5*"></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <Border Background="Azure">
-                                        
-                                    </Border>
-                                    <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0">
+                                        <Border Background="Beige"/>
+                                    </Grid>
+                                    <Grid Margin="10" Grid.Column="1">
                                         <Grid.RowDefinitions>
-                                            <RowDefinition Height="7*"></RowDefinition>
-                                            <RowDefinition Height="5*"></RowDefinition>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="30"/>
                                         </Grid.RowDefinitions>
-                                        <Border BorderBrush="{x:Null}"
-                            Height="Auto"
-                            Width="150"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Margin="5">
-                                            <TextBlock TextWrapping="Wrap"
-                                   Text="{Binding TENMA}"
-                                   FontFamily="Arial"
-                                   FontSize="20" />
-                                        </Border>
-                                        <Label DockPanel.Dock="Right"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Center"
-                           Height="35"
-                           Width="35"
-                           Margin="0,0,5,0"
-                           x:Name="lblAddOrder"
-                           Cursor="Hand">
-                                            <Label.Template>
-                                                <ControlTemplate TargetType="Label">
-                                                    <Grid>
-                                                        <Ellipse Fill="#FF42A7FF" />
-                                                        <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center" />
-                                                    </Grid>
-                                                </ControlTemplate>
-                                            </Label.Template>
-                                            <materialDesign:PackIcon Kind="Plus"
-                                                 Foreground="WhiteSmoke"
-                                                 HorizontalAlignment="Center"
-                                                 VerticalAlignment="Center"
-                                                 Width="Auto"
-                                                 Height="Auto" />
-                                            <Label.InputBindings>
-                                                <MouseBinding Command="{Binding ElementName=lbxMenuProduct, Path=DataContext.SelectedProductCommand}"
-                                          CommandParameter="{Binding ElementName=lblAddOrder}"
-                                          MouseAction="LeftClick" />
-                                            </Label.InputBindings>
-                                        </Label>
+                                        <Grid Grid.Row="0">
+                                            <TextBox Text="{Binding NameFood}"  FontSize="20" FontWeight="Black"/>
+                                        </Grid>
+                                        <Grid Grid.Row="1">
+                                            <TextBox  TextWrapping="Wrap" Text="{Binding Description}" FontSize="10" FontWeight="Medium"/>
+                                        </Grid>
+                                        <Grid Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                            <TextBox Text="{Binding Price}" FontSize="18" FontWeight="Bold"/>
+                                        </Grid>
+                                        <Grid Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                                            <Button Content="Delete" Height="25" Command="{Binding DataContext.deleteProduct, ElementName=listBox}"/>
 
-                                        <DockPanel Grid.Row="1">
-                                            <StackPanel DockPanel.Dock="Right"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Right"
-                                    Orientation="Horizontal"
-                                    Width="Auto"
-                                    Margin="5">
-                                                <materialDesign:PackIcon Kind="Tag"
-                                                     Background="Transparent"
-                                                     Foreground="Goldenrod"
-                                                     Height="15"
-                                                     Width="Auto" />
-                                                <TextBlock Text="{Binding PriceStr}"
-                                       FontFamily="Arial"
-                                       VerticalAlignment="Center"
-                                       Margin="2,0,0,0"
-                                       FontSize="20" />
-                                            </StackPanel>
-                                            <TextBlock DockPanel.Dock="Left"
-                                   Margin="5,0,5,0"
-                                   Text="{Binding Quantity, StringFormat='SL: {0}',UpdateSourceTrigger=PropertyChanged}"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Left"
-                                   FontSize="20" />
-                                        </DockPanel>
+                                        </Grid>
+
                                     </Grid>
                                 </Grid>
                             </materialDesign:Card>
