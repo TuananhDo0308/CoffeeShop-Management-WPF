@@ -1,4 +1,4 @@
-﻿using CoffeeShop.Models;
+﻿using CoffeeShop.Model;
 using CoffeeShop.Service;
 using CoffeeShop.View.AdminView;
 using System;
@@ -36,10 +36,19 @@ namespace CoffeeShop.ViewModel.Admin
                 OnPropertyChanged();
             }
         }
+        private ComboBoxItem _Category;
+        public ComboBoxItem Category
+        {
+            get { return _Category; }
+            set
+            {
+                _Category = value; OnPropertyChanged();
+            }
+        }
         public Window AddFoodWindow { get; set; }
 
-        private List<Models.Menu> _menuList;
-        public List<Models.Menu> MenuList
+        private List<Model.Menu> _menuList;
+        public List<Model.Menu> MenuList
         {
             get => _menuList;
             set
@@ -48,8 +57,8 @@ namespace CoffeeShop.ViewModel.Admin
                 OnPropertyChanged();
             }
         }
-        private Models.Menu selectedProduct;
-        public Models.Menu SelectedProduct
+        private Model.Menu selectedProduct;
+        public Model.Menu SelectedProduct
         {
             get => selectedProduct;
             set
@@ -75,6 +84,16 @@ namespace CoffeeShop.ViewModel.Admin
             set
             {
                 newProductPrice = value;
+                OnPropertyChanged();
+            }
+        }
+        private string newProductDescription;
+        public string NewProductDescription
+        {
+            get => newProductDescription;
+            set
+            {
+                newProductDescription = value;
                 OnPropertyChanged();
             }
         }
@@ -168,10 +187,9 @@ namespace CoffeeShop.ViewModel.Admin
             {
                 try
                 {
-                    var newProduct = new Models.Menu(0,null,"coffe", NewProductName,"ok", NewProductPrice, null);
+                    var newProduct = new Model.Menu(0,null,"Coffee", NewProductName, newProductDescription, NewProductPrice, true,null);
                     await MenuService.Ins.AddProduct(newProduct);
                     await LoadListProduct();
-
 
                 }
                 catch (Exception ex)
@@ -198,7 +216,7 @@ namespace CoffeeShop.ViewModel.Admin
             if (String.IsNullOrEmpty(SearchBox.Text))
                 return true;
             else
-                return ((item as  Models.Menu).NameFood.IndexOf(SearchBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as  Model.Menu).NameFood.IndexOf(SearchBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
 
@@ -207,7 +225,7 @@ namespace CoffeeShop.ViewModel.Admin
         {
             try
             {
-                MenuList = new List<Models.Menu>(await MenuService.Ins.GetAllProduct());
+                MenuList = new List<Model.Menu>(await MenuService.Ins.GetAllProduct());
                 return;
             }
 

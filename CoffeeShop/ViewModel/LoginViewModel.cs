@@ -11,7 +11,7 @@ using System.Windows;
 using System.Collections;
 using System.Windows.Navigation;
 using CoffeeShop.Service;
-using CoffeeShop.Models;
+using CoffeeShop.Model;
 using CoffeeShop.ViewModel.Admin;
 
 namespace CoffeeShop.ViewModel

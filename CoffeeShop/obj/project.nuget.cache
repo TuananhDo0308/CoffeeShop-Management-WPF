@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ZEB+5FiQC1/b/90xAxrMJxHWC6TTqjdwW+rTUkWUeMUear/67cfVpYHeSxDI3Vv5x1c4aqmN5+8ootOGLH7Ztg==",
+  "dgSpecHash": "Ka/3dNg76Hmf3xcWHCLZZrAMrBlrbrVk8bqZBiTh1IYB+wWP61nW4Ltl+UsOeKrMlqS279F7ayIGxrJb/ypauQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\honga\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\honga\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\honga\\.nuget\\packages\\livecharts.wpf.netcore3\\0.9.8\\livecharts.wpf.netcore3.0.9.8.nupkg.sha512",
     "C:\\Users\\honga\\.nuget\\packages\\materialdesigncolors\\2.1.4\\materialdesigncolors.2.1.4.nupkg.sha512",
     "C:\\Users\\honga\\.nuget\\packages\\materialdesignthemes\\4.9.0\\materialdesignthemes.4.9.0.nupkg.sha512",
     "C:\\Users\\honga\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
@@ -44,6 +45,7 @@
     "C:\\Users\\honga\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.77\\microsoft.xaml.behaviors.wpf.1.1.77.nupkg.sha512",
     "C:\\Users\\honga\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\honga\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
+    "C:\\Users\\honga\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512",
     "C:\\Users\\honga\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\honga\\.nuget\\packages\\system.drawing.common\\4.7.0\\system.drawing.common.4.7.0.nupkg.sha512",
     "C:\\Users\\honga\\.nuget\\packages\\system.identitymodel.tokens.jwt\\6.8.0\\system.identitymodel.tokens.jwt.6.8.0.nupkg.sha512",

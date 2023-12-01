@@ -125,7 +125,7 @@ namespace CoffeeShop.View.AdminView {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CoffeeShop;component/view/adminview/pospage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CoffeeShop;V1.0.0.0;component/view/adminview/pospage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\AdminView\PosPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

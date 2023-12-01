@@ -175,10 +175,17 @@
                                         <Grid Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                                             <TextBox Text="{Binding Price}" FontSize="18" FontWeight="Bold"/>
                                         </Grid>
-                                        <Grid Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
-                                            <Button Content="Delete" Height="25" Command="{Binding DataContext.deleteProduct, ElementName=listBox}"/>
-
-                                        </Grid>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+                                            <ComboBox Width="70" SelectedItem="{Binding Type, Mode=TwoWay}">
+                                                <ComboBoxItem Content="Coffee" />
+                                                <ComboBoxItem Content="Tea" />
+                                                <ComboBoxItem Content="Juice" />
+                                                <ComboBoxItem Content="Ice blended" />
+                                                <ComboBoxItem Content="Smoothies" />
+                                                <ComboBoxItem Content="Cakes" />
+                                            </ComboBox>
+                                            <Button Content="Delete" Height="25" Width="40" Padding="0" Command="{Binding DataContext.deleteProduct, ElementName=listBox}"/>
+                                        </StackPanel>
 
                                     </Grid>
                                 </Grid>

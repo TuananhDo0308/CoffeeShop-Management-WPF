@@ -50,6 +50,7 @@
                          HorizontalAlignment="Left"
                          VerticalAlignment="Center"/>
                 <TextBox Grid.Row="1"
+                         Text="{Binding NewProductDescription}"
                          Width="200"
                          TextWrapping="Wrap"
                          Margin="20 0 0 0"

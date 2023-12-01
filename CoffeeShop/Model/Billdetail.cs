@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CoffeeShop.Models
+namespace CoffeeShop.Model
 {
     public partial class Billdetail
     {

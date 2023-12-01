@@ -1,22 +1,22 @@
-﻿using CoffeeShop.Models;
+﻿using CoffeeShop.Model;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using CoffeeShop.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using CoffeeShop.ViewModel;
 
 
 namespace CoffeeShop.Service
 {
 
 
-    public class MenuService
+    public class MenuService:ViewModelBase
     {
         private MenuService() { }
 
@@ -41,6 +41,7 @@ namespace CoffeeShop.Service
                 using (var context = new COFFEESHOPContext())
                 {
                     List<Menu> productDtos = await context.Menus
+                        .Where(p => p.Available == true)
                         .Select(p => new Menu
                         {
                             Id = p.Id,  
@@ -49,7 +50,8 @@ namespace CoffeeShop.Service
                             Type = p.Type, 
                             Price = p.Price,
                             Description = p.Description, 
-                            Billdetails = p.Billdetails 
+                            Billdetails = p.Billdetails ,
+                            Available= p.Available
                         })
                         .ToListAsync();
 
@@ -63,17 +65,28 @@ namespace CoffeeShop.Service
         }
 
 
-        public async Task UpdateProducts(List<Menu> newproducts)
+        public async Task UpdateProducts(List<Menu> newProducts)
         {
             try
             {
                 using (var context = new COFFEESHOPContext())
                 {
-                    var existingproducts = await context.Menus.ToListAsync();
-                    context.Menus.RemoveRange(existingproducts);
-                    await context.SaveChangesAsync();
+                    var existingProducts = await context.Menus.ToListAsync();
 
-                    context.Menus.AddRange(newproducts);
+                    foreach (var product in newProducts)
+                    {
+                        var existingProduct = existingProducts.FirstOrDefault(p => p.Id == product.Id);
+                        if (existingProduct != null)
+                        {
+                            // Update properties of existing product excluding Id
+                            existingProduct.NameFood = product.NameFood;
+                            existingProduct.ImageData = product.ImageData;
+                            existingProduct.Type = product.Type;
+                            existingProduct.Price = product.Price;
+                            existingProduct.Description = product.Description;
+                        }
+                    }
+
                     await context.SaveChangesAsync();
                 }
             }
@@ -82,6 +95,7 @@ namespace CoffeeShop.Service
                 throw e;
             }
         }
+
 
         public async Task AddProduct(Menu newproduct)
         {
@@ -100,19 +114,21 @@ namespace CoffeeShop.Service
                 throw e;
             }
         }
-        public async Task DeleteProduct(Menu producttodelete)
+        public async Task DeleteProduct(Menu productToDelete)
         {
             try
             {
                 using (var context = new COFFEESHOPContext())
                 {
                     // find the existing product in the database
-                    var existingproduct = await context.Menus.FindAsync(producttodelete.Id);
+                    var existingProduct = await context.Menus.FindAsync(productToDelete.Id);
 
-                    if (existingproduct != null)
+                    if (existingProduct != null && productToDelete.Available == true)
                     {
-                        // remove the existing product
-                        context.Menus.Remove(existingproduct);
+                        // update the existing product's Available property
+                        existingProduct.Available = false;
+
+                        // Save changes to the database
                         await context.SaveChangesAsync();
                     }
                 }

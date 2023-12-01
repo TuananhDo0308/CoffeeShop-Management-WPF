@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace CoffeeShop.Models
+namespace CoffeeShop.Model
 {
     public partial class COFFEESHOPContext : DbContext
     {
@@ -18,7 +18,6 @@ namespace CoffeeShop.Models
 
         public virtual DbSet<Bill> Bills { get; set; } = null!;
         public virtual DbSet<Billdetail> Billdetails { get; set; } = null!;
-        public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<Employee> Employees { get; set; } = null!;
         public virtual DbSet<Menu> Menus { get; set; } = null!;
 
@@ -36,7 +35,7 @@ namespace CoffeeShop.Models
             modelBuilder.Entity<Bill>(entity =>
             {
                 entity.HasKey(e => e.IdBill)
-                    .HasName("PK__BILL__74108A9033C831D5");
+                    .HasName("PK__BILL__74108A90C28B4896");
 
                 entity.ToTable("BILL");
 
@@ -48,9 +47,11 @@ namespace CoffeeShop.Models
                     .HasColumnType("date")
                     .HasColumnName("DAY_BILL");
 
-                entity.Property(e => e.IdCustomer).HasColumnName("ID_CUSTOMER");
-
                 entity.Property(e => e.IdEm).HasColumnName("ID_EM");
+
+                entity.Property(e => e.NameCustomer)
+                    .HasMaxLength(200)
+                    .HasColumnName("NAME_CUSTOMER");
 
                 entity.Property(e => e.Price)
                     .HasColumnType("decimal(10, 0)")
@@ -61,21 +62,16 @@ namespace CoffeeShop.Models
                     .IsUnicode(false)
                     .HasColumnName("STATUS_BILL");
 
-                entity.HasOne(d => d.IdCustomerNavigation)
-                    .WithMany(p => p.Bills)
-                    .HasForeignKey(d => d.IdCustomer)
-                    .HasConstraintName("FK__BILL__ID_CUSTOME__403A8C7D");
-
                 entity.HasOne(d => d.IdEmNavigation)
                     .WithMany(p => p.Bills)
                     .HasForeignKey(d => d.IdEm)
-                    .HasConstraintName("FK__BILL__ID_EM__3F466844");
+                    .HasConstraintName("FK__BILL__ID_EM__3D5E1FD2");
             });
 
             modelBuilder.Entity<Billdetail>(entity =>
             {
                 entity.HasKey(e => new { e.IdBill, e.Id })
-                    .HasName("PK__BILLDETA__1731C45229C78DDA");
+                    .HasName("PK__BILLDETA__1731C452831D0FC7");
 
                 entity.ToTable("BILLDETAIL");
 
@@ -89,39 +85,23 @@ namespace CoffeeShop.Models
                     .WithMany(p => p.Billdetails)
                     .HasForeignKey(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BILLDETAIL__ID__440B1D61");
+                    .HasConstraintName("FK__BILLDETAIL__ID__412EB0B6");
 
                 entity.HasOne(d => d.IdBillNavigation)
                     .WithMany(p => p.Billdetails)
                     .HasForeignKey(d => d.IdBill)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BILLDETAI__ID_BI__4316F928");
-            });
-
-            modelBuilder.Entity<Customer>(entity =>
-            {
-                entity.HasKey(e => e.IdCustomer)
-                    .HasName("PK__CUSTOMER__7F6B0B8ACBDAE12B");
-
-                entity.ToTable("CUSTOMER");
-
-                entity.Property(e => e.IdCustomer)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID_CUSTOMER");
-
-                entity.Property(e => e.NameCustomer)
-                    .HasMaxLength(200)
-                    .HasColumnName("NAME_CUSTOMER");
+                    .HasConstraintName("FK__BILLDETAI__ID_BI__403A8C7D");
             });
 
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => e.IdEm)
-                    .HasName("PK__EMPLOYEE__8B62DF49CC0CD2EB");
+                    .HasName("PK__EMPLOYEE__8B62DF49FA2F977B");
 
                 entity.ToTable("EMPLOYEE");
 
-                entity.HasIndex(e => e.Username, "UQ__EMPLOYEE__B15BE12EE0407FD1")
+                entity.HasIndex(e => e.Username, "UQ__EMPLOYEE__B15BE12E4C0C4C9F")
                     .IsUnique();
 
                 entity.Property(e => e.IdEm)
@@ -175,6 +155,8 @@ namespace CoffeeShop.Models
                 entity.Property(e => e.Id)
                     .ValueGeneratedNever()
                     .HasColumnName("ID");
+
+                entity.Property(e => e.Available).HasColumnName("AVAILABLE");
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(500)

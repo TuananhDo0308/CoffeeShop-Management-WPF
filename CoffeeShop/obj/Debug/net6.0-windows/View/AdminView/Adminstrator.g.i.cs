@@ -92,7 +92,7 @@ namespace CoffeeShop {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CoffeeShop;component/view/adminview/adminstrator.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CoffeeShop;V1.0.0.0;component/view/adminview/adminstrator.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\AdminView\Adminstrator.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -53,7 +53,7 @@ namespace CoffeeShop.View.AdminView {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CoffeeShop;component/view/adminview/confirmbill.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CoffeeShop;V1.0.0.0;component/view/adminview/confirmbill.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\AdminView\ConfirmBill.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

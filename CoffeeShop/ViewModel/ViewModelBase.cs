@@ -6,10 +6,24 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CoffeeShop.Model;
 
 
 namespace CoffeeShop.ViewModel
 {
+    public class MenuEqualityComparer : IEqualityComparer<Model.Menu>
+    {
+        public bool Equals(Model.Menu x, Model.Menu y)
+        {
+            return x.Id == y.Id;
+        }
+
+        public int GetHashCode(Model.Menu obj)
+        {
+            return obj.Id.GetHashCode();
+        }
+    }
+
     public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

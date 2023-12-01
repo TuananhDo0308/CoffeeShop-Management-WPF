@@ -1,4 +1,4 @@
-﻿using CoffeeShop.Models;
+﻿using CoffeeShop.Model;
 using CoffeeShop.Service;
 using System;
 using System.Collections.Generic;
@@ -17,8 +17,8 @@ namespace CoffeeShop.ViewModel.Admin
 
     public class PosPageViewModel : ViewModelBase
     {
-        private Models.Menu selectedProduct;
-        public Models.Menu SelectedProduct
+        private Model.Menu selectedProduct;
+        public Model.Menu SelectedProduct
         {
             get => selectedProduct;
             set
@@ -48,8 +48,8 @@ namespace CoffeeShop.ViewModel.Admin
                 OnPropertyChanged();
             }
         }
-        private List<Models.Menu> _menuList;
-        public List<Models.Menu> MenuList
+        private List<Model.Menu> _menuList;
+        public List<Model.Menu> MenuList
         {
             get => _menuList;
             set
@@ -129,14 +129,14 @@ namespace CoffeeShop.ViewModel.Admin
             if (String.IsNullOrEmpty(SearchBox.Text))
                 return true;
             else
-                return ((item as  Models.Menu).NameFood.IndexOf(SearchBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as  Model.Menu).NameFood.IndexOf(SearchBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         public async Task LoadListProduct()
         {
             try
             {
-                MenuList = new List<Models.Menu>(await MenuService.Ins.GetAllProduct());
+                MenuList = new List<Model.Menu>(await MenuService.Ins.GetAllProduct());
 
                 return;
             }
