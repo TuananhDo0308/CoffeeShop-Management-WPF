@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.RightsManagement;
@@ -13,12 +12,13 @@ using System.Windows.Navigation;
 using CoffeeShop.Service;
 using CoffeeShop.Models;
 using CoffeeShop.ViewModel.Admin;
+using CoffeeShop.View.CashierView;
 
 namespace CoffeeShop.ViewModel
 {
-    public class LoginViewModel:ViewModelBase
+    public class LoginViewModel : ViewModelBase
     {
-        
+
         public Window loginWindow { get; set; }
 
         public Employee User { get; set; }
@@ -45,24 +45,24 @@ namespace CoffeeShop.ViewModel
         public ICommand loginCommand { get; set; }
         public ICommand getPassword { get; set; }
         public ICommand setLoginWindow { get; set; }
-        public ICommand exitLogin {  get; set; }
+        public ICommand exitLogin { get; set; }
         public ICommand minimizeLogin { get; set; }
 
         public LoginViewModel()
         {
-            loginCommand = new RelayCommand<Button>((p) => { return true; } , async (p) =>
+            loginCommand = new RelayCommand<Button>((p) => { return true; }, async (p) =>
             {
-                Status="";
+                Status = "";
                 string username = UserName;
                 string password = Password;
-                if (username==null || password==null)
+                if (username == null || password == null)
                 {
-                    Status="Nhap day du thong tin";
+                    Status = "Nhap day du thong tin";
                 }
                 else
                 {
-                    Status="";
-                    CheckLogin(username,password);
+                    Status = "";
+                    CheckLogin(username, password);
                 }
             });
             getPassword = new RelayCommand<PasswordBox>((p) => { return true; }, (p) =>
@@ -93,11 +93,21 @@ namespace CoffeeShop.ViewModel
         private async Task CheckLogin(string user, string password)
         {
             (bool loginSuccess, string message, Employee staff) = await StaffService.Ins.Login(user, password);
-            
+
             if (loginSuccess)
             {
-                Adminstrator adminstrator = new Adminstrator();
-                adminstrator.Show();
+                if (staff.NameRole != "Cashier")
+                {
+                    Adminstrator adminstrator = new Adminstrator();
+                    adminstrator.WindowState = WindowState.Maximized;
+                    adminstrator.Show();
+                }
+                else
+                {
+                    CashierView cashierView = new CashierView();
+                    cashierView.WindowState = WindowState.Maximized;
+                    cashierView.Show();
+                }
                 App.MainUser = staff;
                 loginWindow.Close();
             }
@@ -113,4 +123,3 @@ namespace CoffeeShop.ViewModel
         }
     }
 }
-

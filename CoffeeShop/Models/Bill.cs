@@ -21,7 +21,7 @@ namespace CoffeeShop.Models
         public int IdBill { get; set; }
         public int? IdEm { get; set; }
         public string? NameCustomer { get; set; }
-        public DateTime? DayBill { get; set; }
+        public DateTime DayBill { get; set; }
         public decimal? Price { get; set; }
         public string? StatusBill { get; set; }
         public virtual Employee? IdEmNavigation { get; set; }

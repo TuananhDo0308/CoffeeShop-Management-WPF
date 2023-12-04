@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\
+C:\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\
 CoffeeShop
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\honga\COFFEE_SHOP\CoffeeShop\App.xaml
-13-574153324
+C:\COFFEE_SHOP\CoffeeShop\App.xaml
+15-1790911111
 
-30-457258881
-2261774898020
-Resources\MainResource.xaml;Style\Login.xaml;Style\UIColor.xaml;View\AdminView\AddFood.xaml;View\AdminView\Adminstrator.xaml;View\AdminView\CustomerName.xaml;View\AdminView\DetailEmployee.xaml;View\AdminView\DetailHistory.xaml;View\AdminView\EmployeeManagement.xaml;View\AdminView\HistoryPage.xaml;View\AdminView\MenuPage.xaml;View\AdminView\PosPage.xaml;View\Login.xaml;
+361109917326
+226312494286
+Resources\MainResource.xaml;Style\Login.xaml;Style\UIColor.xaml;View\AdminView\AddFood.xaml;View\AdminView\Adminstrator.xaml;View\AdminView\CustomerName.xaml;View\AdminView\DetailEmployee.xaml;View\AdminView\DetailHistory.xaml;View\AdminView\EmployeeManagement.xaml;View\AdminView\HistoryPage.xaml;View\AdminView\MenuPage.xaml;View\AdminView\PosPage.xaml;View\AdminView\StatisticPage.xaml;View\CashierView\CashierView.xaml;View\Login.xaml;
 
 False
 

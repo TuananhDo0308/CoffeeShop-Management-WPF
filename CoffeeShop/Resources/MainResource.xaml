@@ -1,11 +1,14 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewmodel="clr-namespace:CoffeeShop.ViewModel"
-                    xmlns:viewmodelAdmin="clr-namespace:CoffeeShop.ViewModel.Admin">
+                    xmlns:viewmodelAdmin="clr-namespace:CoffeeShop.ViewModel.Admin"
+                    xmlns:viewmodelCashier="clr-namespace:CoffeeShop.ViewModel.Cashier">
     <viewmodel:LoginViewModel x:Key="LoginVM"></viewmodel:LoginViewModel>
     <viewmodelAdmin:AdminViewModel x:Key="AdminVM"></viewmodelAdmin:AdminViewModel>
     <viewmodelAdmin:PosPageViewModel x:Key="PosVM"></viewmodelAdmin:PosPageViewModel>
     <viewmodelAdmin:MenuViewModel x:Key="MenuVM"></viewmodelAdmin:MenuViewModel>
     <viewmodelAdmin:EmployeeManangementViewModel x:Key="EmployeeVM"></viewmodelAdmin:EmployeeManangementViewModel>
     <viewmodelAdmin:HistoryViewModel x:Key="HistoryVM"></viewmodelAdmin:HistoryViewModel>
+    <viewmodelAdmin:StatisticViewModel x:Key="StatisticVM"></viewmodelAdmin:StatisticViewModel>
+    <viewmodelCashier:CashierViewModel x:Key="CashierVM"></viewmodelCashier:CashierViewModel>
 </ResourceDictionary>

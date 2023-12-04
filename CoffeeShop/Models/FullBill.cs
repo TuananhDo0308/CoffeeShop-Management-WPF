@@ -12,15 +12,15 @@ namespace CoffeeShop.Models
 {
     public class Item
     {
-        public Item(string? name, int? number) 
+        public Item(string? name, int? number)
         {
-            Name=name;
-            Number=number;
+            Name = name;
+            Number = number;
         }
         public string? Name { get; set; }
         public int? Number { get; set; }
     }
-    public class FullBill:ViewModelBase
+    public class FullBill : ViewModelBase
     {
         public int IdBill { get; set; }
         public string NameCustomer { get; set; }
@@ -51,7 +51,7 @@ namespace CoffeeShop.Models
                     break;
                 }
             }
-            DayBill = temp1.DayBill?.ToString("dd/MM/yyyy");
+            DayBill = temp1.DayBill.ToString("dd/MM/yyyy");
             Price = temp1.Price;
             StatusBill = temp1.StatusBill;
             LoadItemsAsync();
@@ -63,7 +63,7 @@ namespace CoffeeShop.Models
         }
         public FullBill()
         {
-           
+
         }
     }
 }

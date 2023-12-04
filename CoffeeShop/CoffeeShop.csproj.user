@@ -34,6 +34,12 @@
     <Compile Update="View\AdminView\MenuPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="View\AdminView\StatisticPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\CashierView\CashierView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Resources\MainResource.xaml">
@@ -61,6 +67,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AdminView\PosPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminView\StatisticPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\CashierView\CashierView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\Login.xaml">

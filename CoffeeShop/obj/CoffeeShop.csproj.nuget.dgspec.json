@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\honga\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj": {}
+    "C:\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj": {}
   },
   "projects": {
-    "C:\\Users\\honga\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj": {
+    "C:\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\honga\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
+        "projectUniqueName": "C:\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
         "projectName": "CoffeeShop",
-        "projectPath": "C:\\Users\\honga\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
-        "packagesPath": "C:\\Users\\honga\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\honga\\COFFEE_SHOP\\CoffeeShop\\obj\\",
+        "projectPath": "C:\\COFFEE_SHOP\\CoffeeShop\\CoffeeShop.csproj",
+        "packagesPath": "C:\\Users\\QuocAn\\.nuget\\packages\\",
+        "outputPath": "C:\\COFFEE_SHOP\\CoffeeShop\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\honga\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\QuocAn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -90,7 +94,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
