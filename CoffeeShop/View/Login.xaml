@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
         xmlns:vm="clr-namespace:CoffeeShop.ViewModel" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="Login" Height="400" Width="700"
+        Title="Login" Height="400" Width="650"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
@@ -37,15 +37,15 @@
         </Grid.Effect>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.25*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
 
         <Border Grid.Column="0" CornerRadius="10 0 0 10">
-            <Border.Background>
-                black
-            </Border.Background>
+            <Image Source="/COFFEESHOP;component/Resources/Img/Login.png"
+           Stretch="UniformToFill"/>
         </Border>
+
 
         <Border Grid.Column="1" Background="White" CornerRadius="0 10 10 0"></Border>
         <Grid Grid.Column="1">

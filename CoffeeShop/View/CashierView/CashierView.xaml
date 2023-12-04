@@ -45,6 +45,10 @@
                             <RowDefinition Height="5*"/>
                             <RowDefinition Height="1*"/>
                         </Grid.RowDefinitions>
+
+                        <Border>
+                            <Image Source="/COFFEESHOP;component/Resources/Img/logo.png"/>
+                        </Border>
                         <StackPanel Grid.Row="1"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center">

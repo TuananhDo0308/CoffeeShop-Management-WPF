@@ -16,17 +16,28 @@ namespace CoffeeShop.ViewModel.Cashier
 {
     public class CashierViewModel : ViewModelBase
     {
+        public Frame contentFrame { get; set; }
         public Window cashierWindow { get; set; }
         public ICommand setCashierWindow { get; set; }
         public ICommand exitCashier { get; set; }
         public ICommand minimizeCashier { get; set; }
         public ICommand logOut { get; set; }
+        public ICommand setContentFrame { get; set; }
+        public ICommand posView { get; set; }
+        public ICommand historyView { get; set; }
+
+
+
         public CashierViewModel()
         {
             setCashierWindow = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
-                //contentFrame.Content = new PosPage();
+                contentFrame.Content = new PosPage();
                 cashierWindow = p;
+            });
+            setContentFrame = new RelayCommand<Frame>((p) => { return true; }, (p) =>
+            {
+                contentFrame = p;
             });
             minimizeCashier = new RelayCommand<Button>((p) => { return true; }, (p) =>
             {
@@ -41,6 +52,16 @@ namespace CoffeeShop.ViewModel.Cashier
                 Login login = new Login();
                 login.Show();
                 cashierWindow.Close();
+            });
+            posView = new RelayCommand<Button>((p) => { return true; }, (p) =>
+            {
+                contentFrame.Content = new PosPage();
+
+            });
+            historyView = new RelayCommand<Button>((p) => { return true; }, (p) =>
+            {
+                contentFrame.Content = new HistoryPage();
+
             });
         }
 

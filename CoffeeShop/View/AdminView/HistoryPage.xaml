@@ -71,11 +71,11 @@
                             <StackPanel Orientation="Horizontal"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center">
-                                <Border CornerRadius="1000"
-                                        Width="30"
-                                        Height="30"
-                                        Background="Black">
-                                    <Image/>
+                                <Border VerticalAlignment="Top" HorizontalAlignment="Left" Background="Transparent" Width="30" Height="30" CornerRadius="10000">
+                                    <Border.Clip>
+                                        <EllipseGeometry Center="15,15" RadiusX="15" RadiusY="15"/>
+                                    </Border.Clip>
+                                    <Image Source="{Binding User.ImageData}" Stretch="UniformToFill"/>
                                 </Border>
                                 <StackPanel Margin="10 0 0 0"
                                             Orientation="Vertical"

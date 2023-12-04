@@ -45,7 +45,7 @@ namespace CoffeeShop.Service
                     newBill.IdEm = User.IdEm;
                     newBill.DayBill = DateTime.Now.Date;
                     newBill.Price = totalPrice;
-                    newBill.StatusBill = "Processing";
+                    newBill.StatusBill = "Pending";
 
                     context.Bills.Add(newBill);
                     await context.SaveChangesAsync();
@@ -67,6 +67,30 @@ namespace CoffeeShop.Service
                 throw e;
             }
         }
+        public async Task UpdateStatus(FullBill selectedBill)
+        {
+            try
+            {
+                using (var context = new COFFEESHOPContext())
+                {
+                    var bill = await context.Bills
+                        .Where(s => s.IdBill == selectedBill.IdBill)
+                        .FirstOrDefaultAsync();
+
+                    if (bill != null)
+                    {
+                        bill.StatusBill = "Done";
+                        await context.SaveChangesAsync(); // Save changes to the database
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+
         public async Task<List<Item>> GetItemsForBill(int billId)
         {
             List<Item> items = new List<Item>();
@@ -75,25 +99,20 @@ namespace CoffeeShop.Service
             {
                 using (var context = new COFFEESHOPContext())
                 {
-                    // Retrieve Billdetails for the specified billId
                     List<Billdetail> listBills = await context.Billdetails
                        .Where(p => p.IdBill == billId)
                        .ToListAsync();
 
-                    // Retrieve available menus
                     List<Models.Menu> listMenu = await context.Menus
                        .Where(p => p.Available == true)
                        .ToListAsync();
 
-                    // Iterate through Billdetails and create Item objects
                     foreach (var billDetail in listBills)
                     {
-                        // Find the corresponding menu item
                         Models.Menu correspondingMenu = listMenu.FirstOrDefault(menu => menu.Id == billDetail.Id);
 
                         if (correspondingMenu != null)
                         {
-                            // Add the Item to the list
                             items.Add(new Item(correspondingMenu.NameFood, billDetail.Soluong));
                         }
                     }
@@ -106,6 +125,43 @@ namespace CoffeeShop.Service
 
             return items;
         }
+        public async Task<ObservableCollection<FullBill>> GetAllBillForStaff()
+        {
+            try
+            {
+                using (var context = new COFFEESHOPContext())
+                {
+                    ObservableCollection<Employee> employees = new ObservableCollection<Employee>(await StaffService.Ins.GetAllEmployees());
+
+                    List<Bill> listBills = await context.Bills
+                        .Where(p => p.StatusBill == "Pending")
+                        .Select(p => new Bill
+                        {
+                            NameCustomer = p.NameCustomer,
+                            IdBill = p.IdBill,
+                            IdEm = p.IdEm,
+                            DayBill = p.DayBill,
+                            Price = p.Price,
+                            StatusBill = p.StatusBill,
+                        })
+                        .ToListAsync();
+
+                    ObservableCollection<FullBill> observableBills = new ObservableCollection<FullBill>();
+
+                    foreach (var item in listBills)
+                    {
+                        FullBill fullBill = new FullBill(item, employees);
+                        observableBills.Add(fullBill);
+                    }
+
+                    return observableBills;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
 
 
         public async Task<ObservableCollection<FullBill>> GetAllBill()
@@ -114,7 +170,6 @@ namespace CoffeeShop.Service
             {
                 using (var context = new COFFEESHOPContext())
                 {
-                    ObservableCollection<Menu> menu = new ObservableCollection<Menu>(await MenuService.Ins.GetAllProduct());
                     ObservableCollection<Employee> employees = new ObservableCollection<Employee>(await StaffService.Ins.GetAllEmployees());
                     List<Bill> listBills = await context.Bills
                         .Select(p => new Bill

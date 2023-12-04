@@ -13,6 +13,7 @@ using CoffeeShop.Service;
 using CoffeeShop.Models;
 using CoffeeShop.ViewModel.Admin;
 using CoffeeShop.View.CashierView;
+using CoffeeShop.View.StaffView;
 
 namespace CoffeeShop.ViewModel
 {
@@ -96,17 +97,23 @@ namespace CoffeeShop.ViewModel
 
             if (loginSuccess)
             {
-                if (staff.NameRole != "Cashier")
+                if (staff.NameRole == "Admin")
                 {
                     Adminstrator adminstrator = new Adminstrator();
                     adminstrator.WindowState = WindowState.Maximized;
                     adminstrator.Show();
                 }
-                else
+                else if(staff.NameRole == "Cashier")
                 {
                     CashierView cashierView = new CashierView();
                     cashierView.WindowState = WindowState.Maximized;
                     cashierView.Show();
+                }
+                else
+                {
+                    StaffView staffView = new StaffView();
+                    staffView.WindowState = WindowState.Maximized;
+                    staffView.Show();
                 }
                 App.MainUser = staff;
                 loginWindow.Close();

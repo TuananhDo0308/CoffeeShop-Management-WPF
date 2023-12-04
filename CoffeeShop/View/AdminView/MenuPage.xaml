@@ -76,11 +76,11 @@
                             <StackPanel Orientation="Horizontal"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center">
-                                <Border CornerRadius="1000"
-                                        Width="30"
-                                        Height="30"
-                                        Background="Black">
-                                    <Image/>
+                                <Border VerticalAlignment="Top" HorizontalAlignment="Left" Background="Transparent" Width="30" Height="30" CornerRadius="10000">
+                                    <Border.Clip>
+                                        <EllipseGeometry Center="15,15" RadiusX="15" RadiusY="15"/>
+                                    </Border.Clip>
+                                    <Image Source="{Binding User.ImageData}" Stretch="UniformToFill"/>
                                 </Border>
                                 <StackPanel Margin="10 0 0 0"
                                             Orientation="Vertical"
@@ -157,10 +157,9 @@
                                         <ColumnDefinition Width="1*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <Border Background="Beige" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                            
-                                        </Border>
-                                        <Button Width="30" Height="30" Margin="10" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                            <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                                        
+                                        <Button  Command="{Binding DataContext.deleteProduct, ElementName=listBox}" Width="30" Height="30" Margin="10" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                                             <materialDesign:PackIcon Kind="Add" Foreground="White" Height="24" Width="24" />
                                         </Button>
                                     </Grid>

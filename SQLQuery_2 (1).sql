@@ -97,11 +97,11 @@ INSERT INTO MENU VALUES
 (27, NULL, 1, 'Carrot Juice', 'Freshly squeezed carrot juice', 56000, 1),
 (28, NULL, 2, 'Earl Grey Tea', 'Classic black tea with bergamot flavor', 62000, 1),
 (29, NULL, 3, 'Blueberry Banana Smoothie', 'Blended blueberry and banana with yogurt', 91000, 1),
-(30, NULL, 4, 'Peanut Butter Ice Blended', 'Peanut butter-flavored blended ice coffee', 108000, 1);
+(31, null, 4, 'Peanut Butter Ice Blended', 'Peanut butter-flavored blended ice coffee', 108000, 1);
 
 
 INSERT INTO BILL VALUES
-(0, 1, N'Customer A', '2023-01-05', 150000, 'Paid'),
+(0, 1, N'Customer A', '2023-01-05', 150000, 'Pending'),
 (1, 1, N'Customer B', '2023-02-10', 120000, 'Pending');
 
 INSERT INTO BILLDETAIL VALUES

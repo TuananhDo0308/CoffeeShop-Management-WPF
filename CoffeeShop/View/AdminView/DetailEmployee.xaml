@@ -43,10 +43,13 @@
                 <StackPanel Grid.Row="0">
                     <StackPanel Margin="20" Orientation="Horizontal">
                         <Grid Width="100" Height="100">
-                        <Border Width="100" Height="100" CornerRadius="10000" Background="Beige">
-
-                        </Border>
-                            <Button Width="30" Height="30" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                            <Border Width="100" Height="100" CornerRadius="50" Background="Transparent">
+                                <Border.Clip>
+                                    <EllipseGeometry Center="50,50" RadiusX="50" RadiusY="50"/>
+                                </Border.Clip>
+                                <Image Source="{Binding SelectedEmployee.ImageData}" Stretch="UniformToFill"/>
+                            </Border>
+                            <Button Width="30" Command="{Binding getImage}" Height="30" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                                 <materialDesign:PackIcon Kind="Add" Foreground="White" Height="24" Width="24" />
                             </Button>
                         </Grid>

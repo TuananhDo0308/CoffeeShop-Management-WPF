@@ -1,12 +1,14 @@
 ﻿using CoffeeShop.Models;
 using CoffeeShop.Service;
 using CoffeeShop.View.AdminView;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace CoffeeShop.ViewModel.Admin
 {
@@ -165,6 +168,7 @@ namespace CoffeeShop.ViewModel.Admin
         public ICommand getFilterBox { get; set; }
         public ICommand filterProducts { get; set; }
 
+        public ICommand getImage { get; set; }
 
 
 
@@ -173,6 +177,26 @@ namespace CoffeeShop.ViewModel.Admin
         {
 
             // Get element
+
+            getImage = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                if (SelectedProduct != null)
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg;*.gif;*.bmp)|*.png;*.jpeg;*.jpg;*.gif;*.bmp|All files (*.*)|*.*";
+
+                    if (openFileDialog.ShowDialog() == true)
+                    {
+                        BitmapImage bitmapImage = new BitmapImage(new Uri(openFileDialog.FileName));
+
+                        // Convert BitmapImage to byte array
+                        SelectedProduct.ImageData = BitmapImageToByteArray(bitmapImage);
+
+                        // Update UI
+                        CollectionViewSource.GetDefaultView(listBox.ItemsSource).Refresh();
+                    }
+                }
+            });
             getListBox = new RelayCommand<ListBox>((p) => { return true; }, (p) =>
             {
                 listBox=p;
@@ -344,6 +368,17 @@ namespace CoffeeShop.ViewModel.Admin
             catch (Exception)
             {
                 throw;
+            }
+        }
+        private byte[] BitmapImageToByteArray(BitmapImage bitmapImage)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                encoder.Save(stream);
+
+                return stream.ToArray();
             }
         }
     }

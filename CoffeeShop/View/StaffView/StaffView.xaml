@@ -1,0 +1,207 @@
+﻿<Window x:Class="CoffeeShop.View.StaffView.StaffView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoffeeShop.View.StaffView"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+         mc:Ignorable="d"
+         Title="CashierView"
+         Name="StaffWindow"
+         Height="600"
+         Width="1000"
+         AllowsTransparency="True"
+         WindowStartupLocation="CenterScreen"
+         WindowStyle="None"
+         Background="Transparent"
+         ResizeMode="CanResize"
+        DataContext="{StaticResource StaffVM}"
+         FontSize="16"       
+        >
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding firstLoad}"
+                     CommandParameter="{Binding ElementName=StaffWindow}" />
+        </i:EventTrigger>
+
+
+    </i:Interaction.Triggers>
+    <Border CornerRadius="10" Background="White">
+        <Grid >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Border Padding="0 0 0 5" Grid.Row="0" BorderBrush="LightGray" BorderThickness="0 0 0 1"></Border>
+            <StackPanel x:Name="ControlBar"
+        Grid.Row="0"
+        Orientation="Horizontal"
+        FlowDirection="RightToLeft"
+        Background="Transparent"
+        Margin="0 0 10 0">
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+        Width="35"
+        Height="20"
+        Padding="5 0"
+        Margin="0 5 0 0"
+        Command="{Binding closeWindow}">
+                    <materialDesign:PackIcon Foreground="Black" Opacity="0.4" Kind="Close" Height="20" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+                <Button Style="{StaticResource MaterialDesignFlatButton}"
+        Width="35"
+        Height="20"
+        Padding="5 0"
+        Margin="0 5 0 0"
+        Command="{Binding minimizeWindow}">
+                    <materialDesign:PackIcon Foreground="Black" Opacity="0.4" Kind="Minimize" Height="20" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+            </StackPanel>
+            <Grid Grid.Row="1">
+
+                <Border BorderBrush="LightGray" BorderThickness="0 0 0 1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="290"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Command="{Binding logOut}" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Log Out" Foreground="White" Margin="50 0 0 0"/>
+                        <Grid Grid.Column="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                            <Border BorderBrush="LightGray" Width="290" Height="90"  >
+                                <StackPanel Orientation="Horizontal"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Center">
+                                    <Border VerticalAlignment="Top" HorizontalAlignment="Left" Background="Transparent" Width="30" Height="30" CornerRadius="10000">
+                                        <Border.Clip>
+                                            <EllipseGeometry Center="15,15" RadiusX="15" RadiusY="15"/>
+                                        </Border.Clip>
+                                        <Image Source="{Binding User.ImageData}" Stretch="UniformToFill"/>
+                                    </Border>
+                                    <StackPanel Margin="10 0 0 0"
+                                          Orientation="Vertical"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center">
+                                        <TextBlock FontSize="15" FontWeight="DemiBold" x:Name="Name" Text="{Binding User.NameEm}"/>
+                                        <TextBlock FontSize="12" FontWeight="Light" x:Name="Role" Text="{Binding User.NameRole}"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Border CornerRadius="0 0 10 10  " Grid.Row="2" Background="#f8f8f8">
+                <Grid Grid.Column="0" >
+                    <ListBox Margin="10"
+             ItemsSource="{Binding Bills}"
+             SelectedItem="{Binding SelectedBill}"
+             Name="listBox"
+             VerticalAlignment="Stretch"
+             HorizontalContentAlignment="Stretch"
+             d:ItemsSource="{d:SampleData ItemCount=12}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+
+                        <ListBox.Template>
+                            <ControlTemplate TargetType="{x:Type ListBox}">
+                                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                    <ItemsPresenter/>
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ListBox.Template>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="20">
+                                    <Grid.Effect>
+                                        <DropShadowEffect BlurRadius="30"
+              ShadowDepth="1"
+              Opacity="0.4">
+                                        </DropShadowEffect>
+                                    </Grid.Effect>
+                                    <Border Background="White" CornerRadius="10">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="70"/>
+                                                <RowDefinition Height="400"/>
+                                                <RowDefinition Height="50"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Bill ID:  #" FontSize="18" FontWeight="SemiBold" Foreground="Orange"/>
+                                                    <TextBlock Text="{Binding IdBill}" FontSize="18" Foreground="Orange" FontWeight="SemiBold"/>
+                                                </StackPanel>
+                                            </Grid>
+                                            <StackPanel Grid.Row="1" Margin="20 5 0 0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left" Width="250">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="Name: " FontSize="18" FontWeight="SemiBold"/>
+                                                    <TextBlock Margin="20 0 0 0" Text="{Binding NameCustomer}" FontSize="18" FontWeight="Light"/>
+                                                </StackPanel>
+                                                
+                                                <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                                                    <TextBlock Text="Date: " FontSize="18" FontWeight="SemiBold"/>
+                                                    <TextBlock Margin="20 0 0 0" Text="{Binding DayBill}" FontSize="18" FontWeight="Light"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <ListView Grid.Row="2" Margin="5" x:Name="listBox"
+                                                      ItemsSource="{Binding ListItem }"
+                                                      Focusable="True"
+                                                      VerticalAlignment="Stretch"
+                                                      HorizontalAlignment="Stretch"
+                                                      d:ItemsSource="{d:SampleData ItemCount=5}">
+                                                <ListView.View>
+                                                    <GridView>
+                                                        <GridViewColumn Header="Drinks"
+                                                                        Width="150" >
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Name}"
+                                                                               FontSize="15" />
+                                                                </DataTemplate>
+
+                                                            </GridViewColumn.CellTemplate>
+
+                                                        </GridViewColumn>
+                                                        <GridViewColumn Header="Number"
+                                                                          Width="60">
+                                                            <GridViewColumn.CellTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock Text="{Binding Number}"
+                                                                               FontSize="15" />
+                                                                </DataTemplate>
+
+                                                            </GridViewColumn.CellTemplate>
+
+                                                        </GridViewColumn>
+                                                    </GridView>
+                                                </ListView.View>
+                                            </ListView>
+                                            <Grid Grid.Row="3">
+                                                <Button Command="{Binding DataContext.doneButton, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" 
+                                                        VerticalAlignment="Center" 
+                                                        HorizontalAlignment="Right" 
+                                                        Margin="0 0 20 0" 
+                                                        Content="Done" 
+                                                        Foreground="White"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+                
+            </Border>
+
+        </Grid>
+    </Border>
+</Window>

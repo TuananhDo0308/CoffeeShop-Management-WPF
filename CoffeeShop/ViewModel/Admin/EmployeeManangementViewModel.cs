@@ -12,6 +12,9 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using CoffeeShop.View.AdminView;
+using System.IO;
+using System.Windows.Media.Imaging;
+using Microsoft.Win32;
 
 namespace CoffeeShop.ViewModel.Admin
 {
@@ -77,11 +80,32 @@ namespace CoffeeShop.ViewModel.Admin
         public ICommand findEmployee { get; set; }
         public ICommand removeEmployee { get; set; }
         public ICommand addNewEmployee { get; set; }
+        public ICommand getImage { get; set; }
+
         private bool checkAdd { get; set; }
 
         public EmployeeManangementViewModel() 
 
         {
+            getImage = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                if (SelectedEmployee != null)
+                {
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg;*.gif;*.bmp)|*.png;*.jpeg;*.jpg;*.gif;*.bmp|All files (*.*)|*.*";
+
+                    if (openFileDialog.ShowDialog() == true)
+                    {
+                        BitmapImage bitmapImage = new BitmapImage(new Uri(openFileDialog.FileName));
+
+                        // Convert BitmapImage to byte array
+                        SelectedEmployee.ImageData = BitmapImageToByteArray(bitmapImage);
+
+                        // Update UI
+                        CollectionViewSource.GetDefaultView(LisBoxEmployee.ItemsSource).Refresh();
+                    }
+                }
+            });
             findEmployee = new RelayCommand<TextBox>((p) => { return true; }, (p) =>
             {
                     Console.WriteLine("Find Employee command executed");
@@ -210,6 +234,16 @@ namespace CoffeeShop.ViewModel.Admin
             else
                 return ((item as Employee).NameEm.IndexOf(SearchBox, StringComparison.OrdinalIgnoreCase) >= 0);
         }
+        private byte[] BitmapImageToByteArray(BitmapImage bitmapImage)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+                encoder.Save(stream);
 
+                return stream.ToArray();
+            }
+        }
     }
 }
