@@ -1,24 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using CoffeeShop.Model;
+using System.Windows.Media.Imaging;
+using CoffeeShop.Models;
 
 
 namespace CoffeeShop.ViewModel
 {
-    public class MenuEqualityComparer : IEqualityComparer<Model.Menu>
+    
+
+    public class MenuEqualityComparer : IEqualityComparer<Models.Menu>
     {
-        public bool Equals(Model.Menu x, Model.Menu y)
+        public bool Equals(Models.Menu x, Models.Menu y)
         {
             return x.Id == y.Id;
         }
 
-        public int GetHashCode(Model.Menu obj)
+        public int GetHashCode(Models.Menu obj)
         {
             return obj.Id.GetHashCode();
         }
@@ -31,6 +35,18 @@ namespace CoffeeShop.ViewModel
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        public BitmapImage ConvertByteArrayToBitmapImage(byte[] byteArray)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            using (MemoryStream memoryStream = new MemoryStream(byteArray))
+            {
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.StreamSource = memoryStream;
+                bitmapImage.EndInit();
+            }
+            return bitmapImage;
         }
     }
     class RelayCommand<T> : ICommand

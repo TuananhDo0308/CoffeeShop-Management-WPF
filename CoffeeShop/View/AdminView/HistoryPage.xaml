@@ -1,82 +1,183 @@
 ﻿<Page x:Class="CoffeeShop.View.AdminView.HistoryPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:CoffeeShop.View.AdminView"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+ xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+ xmlns:local="clr-namespace:CoffeeShop.View.AdminView"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      Name="historyPage"
+      DataContext="{StaticResource HistoryVM}"
+      d:DesignHeight="720" d:DesignWidth="1440"
       Title="HistoryPage">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding firstLoad}"
+                     CommandParameter="{Binding ElementName=listBox}" />
+        </i:EventTrigger>
+       
+
+    </i:Interaction.Triggers>
 
     <Grid Background="White">
-        
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
 
-            <Grid Grid.Column="0"
-          HorizontalAlignment="Left"
-          VerticalAlignment="Center">
+            <Border BorderBrush="LightGray" BorderThickness="0 0 0 1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="290"/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBox    VerticalAlignment="Top"
-                    Margin="20 0 0 0"
-                        Width="300"
-                        Padding="20 10"
-                        materialDesign:HintAssist.Hint="Floating hint in a box"                                
-                        />
+                    <Grid Grid.Column="0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center">
+                        <StackPanel Margin="30 0 20 0" Width="600" Orientation="Horizontal">
+                            <Border Background="White" CornerRadius="20" Width="350" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="Black" BorderThickness="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Margin="20 0 10 0" Foreground="Black" Opacity="0.4" Kind="FindInPage" Height="20" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBox HorizontalAlignment="Left" Padding="0 10 0 0" FontSize="15" FontWeight="Medium"  VerticalAlignment="Top" Height="41" Text="{Binding SearchBox,UpdateSourceTrigger=PropertyChanged}" Width="300" Name="searchBox"  materialDesign:HintAssist.Hint="Search bill by customer's name">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="TextChanged">
+                                                <i:InvokeCommandAction Command="{Binding findNameCus}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </TextBox>
+                                </StackPanel>
+                            </Border>
+                            <DatePicker Width="140" Margin="20 0 0 0"   FontSize="15" FontWeight="Medium"
+                                         SelectedDate="{Binding FilterDate, UpdateSourceTrigger=PropertyChanged}"
+                                         materialDesign:HintAssist.Hint="Pick Date"
+                                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectedDateChanged">
+                                        <i:InvokeCommandAction Command="{Binding filterByDate}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </DatePicker>
+                         
 
-            </Grid>
-            <Grid Grid.Column="1"
-          VerticalAlignment="Center"
-          HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center">
-                    <Border CornerRadius="1000"
-                    Width="30"
-                    Height="30"
-                    Background="Black">
-                        <Image/>
-                    </Border>
-                    <StackPanel Margin="10 0 0 0"
-                        Orientation="Vertical"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
-                        <TextBlock x:Name="Name" Text="Tuan Anh"/>
-                        <TextBlock x:Name="Role" Text="Staff"/>
-                    </StackPanel>
-                </StackPanel>
-
-            </Grid>
-            
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+                        <Border BorderBrush="LightGray" Width="290" Height="90" BorderThickness="1 0 0 0" >
+                            <StackPanel Orientation="Horizontal"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <Border CornerRadius="1000"
+                                        Width="30"
+                                        Height="30"
+                                        Background="Black">
+                                    <Image/>
+                                </Border>
+                                <StackPanel Margin="10 0 0 0"
+                                            Orientation="Vertical"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                    <TextBlock FontSize="15" FontWeight="DemiBold" x:Name="Name" Text="{Binding User.NameEm}"/>
+                                    <TextBlock FontSize="12" FontWeight="Light" x:Name="Role" Text="{Binding User.NameRole}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
         </Grid>
+
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="200"/>
-            </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <ListView></ListView>
-            </Grid>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Detail:"
-                           FontSize="25"
-                           FontWeight="Black"
-                           />
-            </Grid>
+            <materialDesign:Card Background="White"
+                                 Margin="20,20,20,20"
+                                 UniformCornerRadius="5">
+                <StackPanel>
+                    <ListView x:Name="listBox"
+                              ItemsSource="{Binding Bills}"
+                              Focusable="True"
+                              SelectedItem="{Binding SelectedBill}"
+                              Height="578"
+                              d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="OrderID"
+                                                Width="140">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding IdBill}"
+                                                       FontSize="18" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Customer's Name"
+                                                Width="300">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding NameCustomer}"
+                                                       Margin="30,0,0,0"
+                                                       FontSize="18" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Staff's Name"
+                                    Width="300">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding StaffName}"
+                                           Margin="20,0,0,0"
+                                           FontSize="18" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Date" Width="180">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding DayBill}"
+                                                       Margin="20,0,0,0"
+                                                       FontSize="18" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Price (VND)"
+                                                Width="260">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Price}"
+                                                       Margin="40,0,0,0"
+                                                       FontSize="18" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Status"
+                                                 Width="260">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding StatusBill}"
+                                                       Margin="40,0,0,0"
+                                                       FontSize="18" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Content="Detail"
+                                                        Style="{StaticResource MaterialDesignFlatButton}"
+                                                        Command="{Binding DataContext.detailView, ElementName=listBox}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </materialDesign:Card>
         </Grid>
-     
     </Grid>
 </Page>

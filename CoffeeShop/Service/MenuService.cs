@@ -1,4 +1,4 @@
-﻿using CoffeeShop.Model;
+﻿using CoffeeShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -47,11 +47,36 @@ namespace CoffeeShop.Service
                             Id = p.Id,  
                             NameFood= p.NameFood,
                             ImageData = p.ImageData, 
-                            Type = p.Type, 
+                            IdType = p.IdType, 
                             Price = p.Price,
                             Description = p.Description, 
                             Billdetails = p.Billdetails ,
                             Available= p.Available
+                        })
+                        .ToListAsync();
+
+                    return productDtos;
+                }
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public async Task<List<Models.Type>> GetAllType()
+        {
+            try
+            {
+                using (var context = new COFFEESHOPContext())
+                {
+                    List<Models.Type> productDtos = await context.Types
+                        .Where(p => p.Available == true)
+                        .Select(p => new Models.Type
+                        {
+                            Id = p.Id,
+                            Available = p.Available,
+                            Type1 = p.Type1,
                         })
                         .ToListAsync();
 
@@ -78,10 +103,9 @@ namespace CoffeeShop.Service
                         var existingProduct = existingProducts.FirstOrDefault(p => p.Id == product.Id);
                         if (existingProduct != null)
                         {
-                            // Update properties of existing product excluding Id
                             existingProduct.NameFood = product.NameFood;
                             existingProduct.ImageData = product.ImageData;
-                            existingProduct.Type = product.Type;
+                            existingProduct.IdType = product.IdType;
                             existingProduct.Price = product.Price;
                             existingProduct.Description = product.Description;
                         }
@@ -120,15 +144,12 @@ namespace CoffeeShop.Service
             {
                 using (var context = new COFFEESHOPContext())
                 {
-                    // find the existing product in the database
                     var existingProduct = await context.Menus.FindAsync(productToDelete.Id);
 
                     if (existingProduct != null && productToDelete.Available == true)
                     {
-                        // update the existing product's Available property
                         existingProduct.Available = false;
 
-                        // Save changes to the database
                         await context.SaveChangesAsync();
                     }
                 }

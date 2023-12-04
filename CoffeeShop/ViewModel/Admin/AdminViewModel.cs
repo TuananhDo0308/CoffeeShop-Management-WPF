@@ -28,12 +28,19 @@ namespace CoffeeShop.ViewModel.Admin
         public ICommand menuView { get; set; }
         public ICommand logOut { get; set; }
         public ICommand historyView { get; set; }
+        public ICommand teamsView { get; set; }
+
 
         public AdminViewModel()
         {
             posView = new RelayCommand<Button>((p) => { return true; }, (p) =>
             {
                 contentFrame.Content = new PosPage();
+
+            }); 
+            teamsView = new RelayCommand<Button>((p) => { return true; }, (p) =>
+            {
+                contentFrame.Content = new EmployeeManagement();
 
             });
             historyView = new RelayCommand<Button>((p) => { return true; }, (p) =>

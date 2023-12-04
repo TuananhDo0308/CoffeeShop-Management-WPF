@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace CoffeeShop.View.AdminView
 {
-    /// <summary>
-    /// Interaction logic for MenuPage.xaml
-    /// </summary>
     public partial class MenuPage : Page
     {
         public MenuPage()

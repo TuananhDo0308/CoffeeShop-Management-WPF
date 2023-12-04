@@ -128,8 +128,6 @@ C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\refint\CoffeeShop
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\CoffeeShop.pdb
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\CoffeeShop.genruntimeconfig.cache
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\ref\CoffeeShop.dll
-C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\ConfirmBill.g.cs
-C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\ConfirmBill.baml
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\MenuPage.g.cs
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\MenuPage.baml
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\HistoryPage.g.cs
@@ -174,3 +172,13 @@ C:\Users\honga\COFFEE_SHOP\CoffeeShop\bin\Debug\net6.0-windows\runtimes\win-x86\
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\bin\Debug\net6.0-windows\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\AddFood.g.cs
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\AddFood.baml
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\bin\Debug\net6.0-windows\LiveCharts.Wpf.dll
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\bin\Debug\net6.0-windows\LiveCharts.dll
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\CustomerName.g.cs
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\CustomerName.baml
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\EmployeeManagement.g.cs
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\EmployeeManagement.baml
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\DetailEmployee.g.cs
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\DetailEmployee.baml
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\DetailHistory.g.cs
+C:\Users\honga\COFFEE_SHOP\CoffeeShop\obj\Debug\net6.0-windows\View\AdminView\DetailHistory.baml

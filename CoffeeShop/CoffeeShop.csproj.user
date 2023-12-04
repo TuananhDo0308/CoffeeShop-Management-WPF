@@ -13,7 +13,16 @@
     <Compile Update="View\AdminView\Adminstrator.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\AdminView\ConfirmBill.xaml.cs">
+    <Compile Update="View\AdminView\CustomerName.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminView\DetailEmployee.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminView\DetailHistory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminView\EmployeeManagement.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="View\AdminView\HistoryPage.xaml.cs">
@@ -36,7 +45,16 @@
     <Page Update="View\AdminView\Adminstrator.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\AdminView\ConfirmBill.xaml">
+    <Page Update="View\AdminView\CustomerName.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminView\DetailEmployee.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminView\DetailHistory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminView\EmployeeManagement.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AdminView\HistoryPage.xaml">

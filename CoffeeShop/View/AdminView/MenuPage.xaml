@@ -7,12 +7,16 @@
       mc:Ignorable="d"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       DataContext="{StaticResource MenuVM}"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1000"
       Title="MenuPage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding firstLoad}"
                         CommandParameter="{Binding ElementName=Pospage}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding getFilterBox}"
+                CommandParameter="{Binding ElementName=filterBox}" />
         </i:EventTrigger>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding getListBox}"
@@ -22,66 +26,79 @@
             <i:InvokeCommandAction Command="{Binding getSearchBox}"
                 CommandParameter="{Binding ElementName=searchBox}" />
         </i:EventTrigger>
+
     </i:Interaction.Triggers>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Grid.ColumnSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0">
 
-            <Grid Grid.Column="0"
-              HorizontalAlignment="Left"
-              VerticalAlignment="Center">
+            <Border BorderBrush="LightGray" BorderThickness="0 0 0 1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="290"/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBox    VerticalAlignment="Top"
-                        Margin="20 0 0 0"
-                            Width="300"
-                            Padding="20 10"
-                            Name="searchBox"
-                            materialDesign:HintAssist.Hint="Floating hint in a box"                                
-                            >
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="TextChanged">
-                            <i:InvokeCommandAction Command="{Binding findProducts}"/>
-                        </i:EventTrigger>
+                    <Grid Grid.Column="0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Center">
+                        <StackPanel Margin="30 0 20 0" Width="600" Orientation="Horizontal">
+                            <Border Background="White" CornerRadius="20" Width="350" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="Black" BorderThickness="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <materialDesign:PackIcon Margin="20 0 10 0" Foreground="Black" Opacity="0.4" Kind="FindInPage" Height="20" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <TextBox HorizontalAlignment="Left" Padding="0 10 0 0" FontSize="15" FontWeight="Medium"  VerticalAlignment="Top" Height="41" Text="{Binding SearchBox,UpdateSourceTrigger=PropertyChanged}" Width="300" Name="searchBox"  materialDesign:HintAssist.Hint="Search drinks or food">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="TextChanged">
+                                                <i:InvokeCommandAction Command="{Binding findProducts}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </TextBox>
+                                </StackPanel>
+                            </Border>
+                            <ComboBox Margin="20 0 0 0"  Style="{StaticResource MaterialDesignFloatingHintComboBox}"  materialDesign:HintAssist.Hint="Filter" FontSize="15" FontWeight="Medium" Name="filterBox" Width="100">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="SelectionChanged">
+                                        <i:InvokeCommandAction Command="{Binding filterProducts}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ComboBox>
 
-                    </i:Interaction.Triggers>
-                </TextBox>
-
-            </Grid>
-            <Grid Grid.Column="1"
-              VerticalAlignment="Center"
-              HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-                    <Border CornerRadius="1000"
-                        Width="30"
-                        Height="30"
-                        Background="Black">
-                        <Image/>
-                    </Border>
-                    <StackPanel Margin="10 0 0 0"
-                            Orientation="Vertical"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-                        <TextBlock x:Name="Name" Text="{Binding NameStaff }"/>
-                        <TextBlock x:Name="Role" Text="{Binding RoleStaff}"/>
-                    </StackPanel>
-                </StackPanel>
-
-            </Grid>
-
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+                        <Border BorderBrush="LightGray" Width="290" Height="90" BorderThickness="1 0 0 0" >
+                            <StackPanel Orientation="Horizontal"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <Border CornerRadius="1000"
+                                        Width="30"
+                                        Height="30"
+                                        Background="Black">
+                                    <Image/>
+                                </Border>
+                                <StackPanel Margin="10 0 0 0"
+                                            Orientation="Vertical"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                    <TextBlock FontSize="15" FontWeight="DemiBold" x:Name="Name" Text="{Binding User.NameEm}"/>
+                                    <TextBlock FontSize="12" FontWeight="Light" x:Name="Role" Text="{Binding User.NameRole}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
         </Grid>
-        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="#f8f8f8">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
@@ -93,26 +110,7 @@
                             Margin="30 0 0 0"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left">
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                            Width="50"
-                            Content="All"
-                            Margin="10 0 10 0">
-                    </Button>
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                            Width="80"
-                            Content="Coffee"
-                            Margin="10 0 10 0">
-                    </Button>
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                            Width="100"
-                            Content="Ice Blend"
-                            Margin="10 0 10 0">
-                    </Button>
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                            Width="70"
-                            Content="Cake"
-                            Margin="10 0 10 0">
-                    </Button>
+                    
 
                 </StackPanel>
                 <Grid Grid.Column="1">
@@ -123,6 +121,7 @@
                             Width="70"
                             Background="Black"
                             Foreground="White"
+                            BorderBrush="Black"
                             Content="Update"
                             Margin="10 0 10 0">
                     </Button>
@@ -133,6 +132,7 @@
                             Background="Black"
                             Foreground="White"
                             Content="Add"
+                            BorderBrush="Black"
                             Margin="10 0 10 0">
                     </Button>
                     </StackPanel>
@@ -140,12 +140,12 @@
 
 
             </Grid>
-            <Grid Grid.Row="1">
-                <ListBox ItemsSource="{Binding MenuList,Mode=TwoWay}" Name="listBox"  VerticalAlignment="Top" HorizontalContentAlignment="Right" d:ItemsSource="{d:SampleData ItemCount=12}"
+            <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Stretch" >
+                <ListBox Margin="30 0 0 0" ItemsSource="{Binding MenuList,Mode=TwoWay}" Name="listBox"  VerticalAlignment="Center" HorizontalContentAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=12}"
                          SelectedItem="{Binding SelectedProduct}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <UniformGrid Columns="3" />
+                            <UniformGrid Columns="4" />
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
@@ -157,7 +157,12 @@
                                         <ColumnDefinition Width="1*"/>
                                     </Grid.ColumnDefinitions>
                                     <Grid Grid.Column="0">
-                                        <Border Background="Beige"/>
+                                        <Border Background="Beige" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                            
+                                        </Border>
+                                        <Button Width="30" Height="30" Margin="10" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                            <materialDesign:PackIcon Kind="Add" Foreground="White" Height="24" Width="24" />
+                                        </Button>
                                     </Grid>
                                     <Grid Margin="10" Grid.Column="1">
                                         <Grid.RowDefinitions>
@@ -173,18 +178,29 @@
                                             <TextBox  TextWrapping="Wrap" Text="{Binding Description}" FontSize="10" FontWeight="Medium"/>
                                         </Grid>
                                         <Grid Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                                            <TextBox Text="{Binding Price}" FontSize="18" FontWeight="Bold"/>
+                                            <StackPanel Margin="0 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                <TextBox Text="{Binding Price}"  FontSize="15" Foreground="Orange" FontWeight="Bold"></TextBox>
+                                                <TextBlock VerticalAlignment="Center" Text="VND" FontSize="15" FontWeight="DemiBold"/>
+                                            </StackPanel>
                                         </Grid>
-                                        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
-                                            <ComboBox Width="70" SelectedItem="{Binding Type, Mode=TwoWay}">
-                                                <ComboBoxItem Content="Coffee" />
-                                                <ComboBoxItem Content="Tea" />
-                                                <ComboBoxItem Content="Juice" />
-                                                <ComboBoxItem Content="Ice blended" />
-                                                <ComboBoxItem Content="Smoothies" />
-                                                <ComboBoxItem Content="Cakes" />
+                                        <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
+                                            <ComboBox Name="comboBox"  ItemsSource="{Binding Path=DataContext.ListTypeString, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"   SelectedIndex="{Binding IdType, Mode=TwoWay}" FontSize="15" FontWeight="Medium" Width="80">
+                                               
                                             </ComboBox>
-                                            <Button Content="Delete" Height="25" Width="40" Padding="0" Command="{Binding DataContext.deleteProduct, ElementName=listBox}"/>
+                                            <materialDesign:PackIcon Kind="Delete"
+                                                                      Foreground="Gray"
+                                                                      HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center"
+                                                                      Width="20"
+                                                                      Height="20"
+                                                                      Margin="20 0 0 0"
+                                                                      BorderThickness="0" >
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.deleteProduct, ElementName=listBox}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </materialDesign:PackIcon>
                                         </StackPanel>
 
                                     </Grid>

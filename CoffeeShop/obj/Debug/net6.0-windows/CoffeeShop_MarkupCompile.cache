@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\honga\COFFEE_SHOP\CoffeeShop\App.xaml
-10536100899
+13-574153324
 
-211413167073
-2241060508234
-Resources\MainResource.xaml;Style\Login.xaml;Style\UIColor.xaml;View\AdminView\AddFood.xaml;View\AdminView\Adminstrator.xaml;View\AdminView\ConfirmBill.xaml;View\AdminView\HistoryPage.xaml;View\AdminView\MenuPage.xaml;View\AdminView\PosPage.xaml;View\Login.xaml;
+30-457258881
+2261774898020
+Resources\MainResource.xaml;Style\Login.xaml;Style\UIColor.xaml;View\AdminView\AddFood.xaml;View\AdminView\Adminstrator.xaml;View\AdminView\CustomerName.xaml;View\AdminView\DetailEmployee.xaml;View\AdminView\DetailHistory.xaml;View\AdminView\EmployeeManagement.xaml;View\AdminView\HistoryPage.xaml;View\AdminView\MenuPage.xaml;View\AdminView\PosPage.xaml;View\Login.xaml;
 
 False
 

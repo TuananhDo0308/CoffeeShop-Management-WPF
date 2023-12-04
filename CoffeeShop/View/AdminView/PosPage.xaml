@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       DataContext="{StaticResource PosVM}"
       Name="Pospage"
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="1000"
       Title="Pospage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -23,109 +23,96 @@
             <i:InvokeCommandAction Command="{Binding getSearchBox}"
                                          CommandParameter="{Binding ElementName=searchBox}" />
         </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding getFilterBox}"
+                                 CommandParameter="{Binding ElementName=filterBox}" />
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding getListBoxCart}"
+                                CommandParameter="{Binding ElementName=listBoxCart}" />
+        </i:EventTrigger>
+        
     </i:Interaction.Triggers>
     
     <Grid Background="White">
         
         <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         
         <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
+           
+            <Border BorderBrush="LightGray" BorderThickness="0 0 0 1">
+            <Grid>
+                <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="290"/>
             </Grid.ColumnDefinitions>
            
             <Grid Grid.Column="0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Center">
-
-                <TextBox    VerticalAlignment="Top"
-                            Margin="20 0 0 0"
-                            Text="{Binding SearchBox}"
-                                Width="300"
-                            Name="searchBox"
-                                Padding="20 10"
-                                materialDesign:HintAssist.Hint="Floating hint in a box">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="TextChanged">
-                            <i:InvokeCommandAction Command="{Binding findProducts}"/>
-                        </i:EventTrigger>
-
-                    </i:Interaction.Triggers>
-                </TextBox>
-
+                <StackPanel Margin="30 0 20 0" Width="600" Orientation="Horizontal">
+                    <Border Background="White" CornerRadius="20" Width="350" Height="40" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="Black" BorderThickness="1">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Margin="20 0 10 0" Foreground="Black" Opacity="0.4" Kind="FindInPage" Height="20" Width="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <TextBox HorizontalAlignment="Left" Padding="0 10 0 0" FontSize="15" FontWeight="Medium"  VerticalAlignment="Top" Height="41" Text="{Binding SearchBox,UpdateSourceTrigger=PropertyChanged}" Width="300" Name="searchBox"  materialDesign:HintAssist.Hint="Search drinks or food">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="TextChanged">
+                                    <i:InvokeCommandAction Command="{Binding findProducts}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBox>
+                        </StackPanel>
+                    </Border>
+                    <ComboBox Margin="20 0 0 0"  Style="{StaticResource MaterialDesignFloatingHintComboBox}"  materialDesign:HintAssist.Hint="Filter" FontSize="15" FontWeight="Medium" Name="filterBox" Width="100">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding filterProducts}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                    
+                </StackPanel>
             </Grid>
             <Grid Grid.Column="1"
                   VerticalAlignment="Center"
                   HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            HorizontalAlignment="Center">
-                    <Border CornerRadius="1000"
-                            Width="30"
-                            Height="30"
-                            Background="Black">
-                        <Image/>
-                    </Border>
-                    <StackPanel Margin="10 0 0 0"
-                                Orientation="Vertical"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center">
-                        <TextBlock x:Name="Name" Text="{Binding NameStaff}"/>
-                        <TextBlock x:Name="Role" Text="{Binding RoleStaff}"/>
-                    </StackPanel>
-                </StackPanel>
-                
-            </Grid>
-            
+                        <Border BorderBrush="LightGray" Width="290" Height="90" BorderThickness="1 0 0 0" >
+                            <StackPanel Orientation="Horizontal"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center">
+                                <Border CornerRadius="1000"
+                                        Width="30"
+                                        Height="30"
+                                        Background="Black">
+                                    <Image/>
+                                </Border>
+                                <StackPanel Margin="10 0 0 0"
+                                            Orientation="Vertical"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                    <TextBlock FontSize="15" FontWeight="DemiBold" x:Name="Name" Text="{Binding User.NameEm}"/>
+                                    <TextBlock FontSize="12" FontWeight="Light" x:Name="Role" Text="{Binding User.NameRole}"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
         </Grid>
+        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="290"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="13*"/>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
-                    <StackPanel Orientation="Horizontal"
-                                Margin="30 0 0 0"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Left">
-                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                                Width="50"
-                                Content="All"
-                                Margin="10 0 10 0">
-                        </Button>
-                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                                Width="80"
-                                Content="Coffee"
-                                Margin="10 0 10 0">
-                        </Button>
-                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                                Width="100"
-                                Content="Ice Blend"
-                                Margin="10 0 10 0">
-                        </Button>
-                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                                Width="70"
-                                Content="Cake"
-                                Margin="10 0 10 0">
-                        </Button>
-
-                    </StackPanel>
-                    
-                </Grid>
-                <Grid Grid.Row="1">
-                    <ListBox ItemsSource="{Binding MenuList}" SelectedItem="{Binding SelectedProduct}" Name="listBox" VerticalAlignment="Top" HorizontalContentAlignment="Right" d:ItemsSource="{d:SampleData ItemCount=12}">
+            <Grid Grid.Column="0" Background="#f8f8f8">
+                <ListBox Margin="30 10 0 0" ItemsSource="{Binding MenuList}" SelectedItem="{Binding SelectedProduct}" Name="listBox" VerticalAlignment="Top" HorizontalContentAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=12}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <UniformGrid Columns="4" />
+                                <UniformGrid Columns="3" />
                             </ItemsPanelTemplate>
                         </ListBox.ItemsPanel>
                         <ListBox.ItemTemplate>
@@ -153,10 +140,13 @@
                                                 <TextBlock  TextWrapping="Wrap" Text="{Binding Description}" FontSize="10" FontWeight="Medium"/>
                                             </Grid>
                                             <Grid Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                                                <TextBlock Text="{Binding Price}" FontSize="18" FontWeight="Bold"/>
+                                            <StackPanel Margin="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                <TextBlock Foreground="Orange" Text="{Binding Price}" FontSize="15" FontWeight="Bold"/>
+                                                <TextBlock VerticalAlignment="Center" Text="VND" FontSize="15" FontWeight="DemiBold"/>
+                                            </StackPanel>
                                             </Grid>
                                             <Grid Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" >
-                                                <Button Content="Add" Height="25"></Button>
+                                                <Button Content="Add to Cart" Height="25" Command="{Binding DataContext.addToCart, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"></Button>
                                             </Grid>
 
                                         </Grid>
@@ -165,86 +155,105 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                </Grid>
             </Grid>
-            <Grid Grid.Column="1" Margin="0 0 20 0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="90"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="170"/>
-                </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" Orientation="Vertical"
-                            VerticalAlignment="Top">
-                    <TextBlock Text="Cart:" FontSize="20" FontWeight="Bold"/>
-                    <StackPanel Margin="0 10 0 0" Orientation="Horizontal"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
-                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                                Width="70"
-                                Padding="0"
-                                Content="Dine in"
-                                Background="Black"
-                                Foreground="White"
-                                BorderBrush="Black"
-                                Margin="0 0 10 0">
-                        </Button>
-                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                         Width="70"
-                         Padding="0"
-                         Content="Take away"
-                         Background="Black"
-                         Foreground="White"
-                         BorderBrush="Black"
-                         Margin="10 0 0 0">
-                        </Button>
-                    </StackPanel>
-                </StackPanel>
-                <ListView Grid.Row="1"
-                        Height="200">
-                        
-                    </ListView>
-                    <Grid Grid.Row="2">
-                    <StackPanel>
-                        <TextBox    VerticalAlignment="Top"
-                                        Width="200"
-                                        Padding="10"
-                                        materialDesign:HintAssist.Hint="Enter Voucher"                                
-                                        />
-                        <Grid Margin="0 10 0 0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" Orientation="Vertical">
-                            <TextBlock Text="Items: "/>
-                            <TextBlock Text="Discount: "/>
-                            <TextBlock Text="Total: "
-                                       FontSize="18"
-                                       Margin="0 10 0 0"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
+            <Border Width="290" BorderBrush="LightGray" BorderThickness="1 0 0 0" Grid.Column="1" Margin="0 0 20 0">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock VerticalAlignment="Center" Margin="40 0 0 0" Text="Cart" FontSize="25" FontWeight="Bold" Foreground="Black"/>
 
-                            <TextBlock x:Name="PriceItem" Text="100$"/>
-                            <TextBlock x:Name="Discount" Text="100$"/>
-                            <TextBlock x:Name="Total" Text="100$"
-                                       FontSize="18" 
+                    <ListBox Grid.Row="1" ItemsSource="{Binding ListCart, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedProductCart}" Name="listBoxCart" VerticalAlignment="Top" HorizontalContentAlignment="Center" d:ItemsSource="{d:SampleData ItemCount=12}">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="1" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <materialDesign:Card  Width="200" Height="100" Padding="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" Background="Beige"/>
+                                        <StackPanel Grid.Column="1">
+                                            <TextBlock Height="30" Margin="10 4 0 0" Grid.Row="0" Text="{Binding NameFood}" FontSize="17" FontWeight="Bold" VerticalAlignment="Center"/>
+                                            <StackPanel Margin="20 7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                <TextBlock Text="{Binding Price}"  FontSize="15" Foreground="Orange" FontWeight="Bold"></TextBlock>
+                                                <TextBlock VerticalAlignment="Center" Text="VND" FontSize="15" FontWeight="DemiBold"/>
+                                            </StackPanel>
+                                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                                <StackPanel Margin="10 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                    <TextBlock VerticalAlignment="Center" Text="Number:" FontSize="15" FontWeight="DemiBold"/>
+                                                    <TextBox Width="30" FontSize="13" FontWeight="DemiBold" Foreground="Orange" Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="TextChanged">
+                                                                <i:InvokeCommandAction Command="{Binding DataContext.changeNumber, UpdateSourceTrigger=PropertyChanged ,RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"/>
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </TextBox>
+                                                </StackPanel>
+                                                <materialDesign:PackIcon Kind="Delete"
+                                                                     Foreground="Gray"
+                                                                     HorizontalAlignment="Center"
+                                                                     VerticalAlignment="Center"
+                                                                     Width="20"
+                                                                     Height="20"
+                                                                     Margin="5 0 0 0"
+                                                                     BorderThickness="0" >
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                            <i:InvokeCommandAction Command="{Binding DataContext.removeCart, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}, UpdateSourceTrigger=PropertyChanged}" />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </materialDesign:PackIcon>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </materialDesign:Card>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Grid Grid.Row="2">
+                        <StackPanel Margin="30 0 30 0">
+
+                            <Grid Margin="0 10 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Vertical">
+                                    <TextBlock Text="Total: "
+                                             FontSize="18"
+                                           FontWeight="SemiBold"
                                        Margin="0 10 0 0"/>
-                        </StackPanel>
-                        </Grid>
-                    <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                            Command="{Binding placeOrder}"  
-                            Width="100"
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Right">
+
+                                    <StackPanel Margin="20 7" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                        <TextBlock  Text="{Binding Total}" Margin="0 0 10 0"  FontSize="15" Foreground="Orange" FontWeight="Bold"></TextBlock>
+                                        <TextBlock VerticalAlignment="Center" Text="VND" FontSize="15" FontWeight="DemiBold"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </Grid>
+                            <Button HorizontalAlignment="Center" Style="{StaticResource MaterialDesignRaisedButton}"
+                            Command="{Binding openCustomerNameWindow}"  
+                            Width="200"
                               Padding="0"
-                              Content="Take away"
-                              Background="Black"
-                              Foreground="White"
-                              BorderBrush="Black"
+                              Content="Place an order"
                               Margin="0 10 0 0">
-                    </Button>
-                    </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
                 </Grid>
-               
-            </Grid>
+            </Border>
         </Grid>
+    
     </Grid>
 </Page>

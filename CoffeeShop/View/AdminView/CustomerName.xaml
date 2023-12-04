@@ -1,0 +1,49 @@
+﻿<Window x:Class="CoffeeShop.View.AdminView.CustomerName"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoffeeShop.View.AdminView"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        Title="CustomerName" Height="190" Width="340"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        ResizeMode="CanResize"
+        FontSize="16"
+        Name="customerWindow"
+        DataContext="{StaticResource PosVM}"
+        FontFamily="{DynamicResource MaterialDesignFont }">
+    <i:Interaction.Triggers>
+        <i:EventTrigger>
+            <i:InvokeCommandAction Command="{Binding getWindowCustomerName}"
+                        CommandParameter="{Binding ElementName=customerWindow}" />
+
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseLeftButtonDown">
+            <i:InvokeCommandAction Command="{Binding MouseLeftButtonDownWindow}"
+                   CommandParameter="{Binding ElementName=customerWindow}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="20">
+        <Grid.Effect>
+            <DropShadowEffect BlurRadius="30"
+               ShadowDepth="1"
+               Opacity="0.3">
+            </DropShadowEffect>
+        </Grid.Effect>
+    <Border  CornerRadius="10" Background="White">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock Margin="10" Text="Customer name" FontSize="20" FontWeight="Black"></TextBlock>
+            <TextBox Margin="10 0 0 0" Width="250" Text="{Binding Customer}"></TextBox>
+                <StackPanel Margin="0 10 0 0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <Button Margin="0  0 20 0" Width="80" Content="OK" Command="{Binding placeOrder}"></Button>
+                    <Button Width="80" Content="Cancel" Command="{Binding exitCustomerNameWindow}"></Button>
+                </StackPanel>
+        </StackPanel>
+    </Border>
+    </Grid>
+
+</Window>

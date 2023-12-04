@@ -1,9 +1,12 @@
-﻿using CoffeeShop.Model;
+﻿using CoffeeShop.Models;
 using CoffeeShop.Service;
 using CoffeeShop.View.AdminView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +29,27 @@ namespace CoffeeShop.ViewModel.Admin
                 OnPropertyChanged();
             }
         }
+
+        private List<string> listTypeString;
+        public List<string> ListTypeString
+        {
+            get => listTypeString;
+            set
+            {
+                listTypeString = value;
+                OnPropertyChanged();
+            }
+        }
+        private List<Models.Type> listType;
+        public List<Models.Type> ListType
+        {
+            get => listType;
+            set
+            {
+                listType = value;
+                OnPropertyChanged();
+            }
+        }
         private TextBox searchBox;
         public TextBox SearchBox
         {
@@ -36,19 +60,11 @@ namespace CoffeeShop.ViewModel.Admin
                 OnPropertyChanged();
             }
         }
-        private ComboBoxItem _Category;
-        public ComboBoxItem Category
-        {
-            get { return _Category; }
-            set
-            {
-                _Category = value; OnPropertyChanged();
-            }
-        }
+
         public Window AddFoodWindow { get; set; }
 
-        private List<Model.Menu> _menuList;
-        public List<Model.Menu> MenuList
+        private List<Models.Menu> _menuList;
+        public List<Models.Menu> MenuList
         {
             get => _menuList;
             set
@@ -57,8 +73,18 @@ namespace CoffeeShop.ViewModel.Admin
                 OnPropertyChanged();
             }
         }
-        private Model.Menu selectedProduct;
-        public Model.Menu SelectedProduct
+        private ComboBox filterBox;
+        public ComboBox FilterBox
+        {
+            get => filterBox;
+            set
+            {
+                filterBox = value;
+                OnPropertyChanged();
+            }
+        }
+        private Models.Menu selectedProduct;
+        public Models.Menu SelectedProduct
         {
             get => selectedProduct;
             set
@@ -97,6 +123,16 @@ namespace CoffeeShop.ViewModel.Admin
                 OnPropertyChanged();
             }
         }
+        private int newProductType;
+        public int NewProductType
+        {
+            get => newProductType;
+            set
+            {
+                newProductType = value;
+                OnPropertyChanged();
+            }
+        }
         private string _nameStaff;
         public string NameStaff
         {
@@ -126,6 +162,10 @@ namespace CoffeeShop.ViewModel.Admin
         public ICommand getListBox { get; set; }
         public ICommand getSearchBox { get; set; }
         public ICommand findProducts { get; set; }
+        public ICommand getFilterBox { get; set; }
+        public ICommand filterProducts { get; set; }
+
+
 
 
 
@@ -136,6 +176,10 @@ namespace CoffeeShop.ViewModel.Admin
             getListBox = new RelayCommand<ListBox>((p) => { return true; }, (p) =>
             {
                 listBox=p;
+            });
+            getFilterBox = new RelayCommand<ComboBox>((p) => { return true; }, (p) =>
+            {
+                filterBox=p;
             });
             getSearchBox = new RelayCommand<TextBox>((p) => { return true; }, (p) =>
             {
@@ -152,7 +196,16 @@ namespace CoffeeShop.ViewModel.Admin
                 User=App.MainUser;
                 NameStaff=User.NameEm;
                 RoleStaff=User.NameRole.ToString();
+
+                await LoadListType();
+                await LoadListTypeString();
                 await LoadListProduct();
+
+                var comboBoxItems = new List<string> { "ALL" };
+                comboBoxItems.AddRange(ListTypeString);
+
+                filterBox.ItemsSource = comboBoxItems;
+                filterBox.SelectedIndex=0;
             });
 
             MouseLeftButtonDownWindow = new RelayCommand<Window>((p) => { return true; }, (p) =>
@@ -175,8 +228,12 @@ namespace CoffeeShop.ViewModel.Admin
             });
             deleteProduct = new RelayCommand<Button>((p) => { return true; }, async (p) =>
             {
-                await MenuService.Ins.DeleteProduct(selectedProduct);
-                await LoadListProduct();
+                if (selectedProduct!=null)
+                {
+                    await MenuService.Ins.DeleteProduct(selectedProduct);
+                    await LoadListProduct();
+                }
+                
 
             });
             updateProducts = new RelayCommand<Button>((p) => { return true; }, async (p) =>
@@ -187,9 +244,10 @@ namespace CoffeeShop.ViewModel.Admin
             {
                 try
                 {
-                    var newProduct = new Model.Menu(0,null,"Coffee", NewProductName, newProductDescription, NewProductPrice, true,null);
+                    var newProduct = new Models.Menu(0, null, newProductType, newProductName, newProductDescription, newProductPrice, true);
                     await MenuService.Ins.AddProduct(newProduct);
                     await LoadListProduct();
+                    AddFoodWindow.Close();
 
                 }
                 catch (Exception ex)
@@ -199,14 +257,38 @@ namespace CoffeeShop.ViewModel.Admin
             });
             findProducts = new RelayCommand<Window>((p) => { return true; }, (p) =>
             {
+                filterBox.SelectedIndex=0;
                 CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listBox.ItemsSource);
                 view.Filter = Filter;
                 CollectionViewSource.GetDefaultView(listBox.ItemsSource).Refresh();
             });
+                
+            filterProducts = new RelayCommand<Window>((p) => { return true; }, (p) =>
+                {
+                    searchBox.Text = "";
+
+                    CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listBox.ItemsSource);
+
+                    if (filterBox.SelectedIndex == 0)
+                    {
+                        view.Filter = null;
+                    }
+                    else
+                    {
+                        int selectedTypeId = filterBox.SelectedIndex - 1;
+                        view.Filter = (item) =>
+                        {
+                            return (item as Models.Menu)?.IdType == selectedTypeId;
+                        };
+                    }
+
+                    view.Refresh();
+                });
+            }
 
 
 
-        }
+        
 
 
 
@@ -216,7 +298,7 @@ namespace CoffeeShop.ViewModel.Admin
             if (String.IsNullOrEmpty(SearchBox.Text))
                 return true;
             else
-                return ((item as  Model.Menu).NameFood.IndexOf(SearchBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as  Models.Menu).NameFood.IndexOf(SearchBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
 
@@ -225,7 +307,37 @@ namespace CoffeeShop.ViewModel.Admin
         {
             try
             {
-                MenuList = new List<Model.Menu>(await MenuService.Ins.GetAllProduct());
+                MenuList = new List<Models.Menu>(await MenuService.Ins.GetAllProduct());
+                return;
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task LoadListType()
+        {
+            try
+            {
+                listType = new List<Models.Type>(await MenuService.Ins.GetAllType());
+                return;
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task LoadListTypeString()
+        {
+            try
+            {
+                ListTypeString = new List<string>();
+                foreach(var item in listType)
+                {
+                    ListTypeString.Add(item.Type1.ToString());
+                }
                 return;
             }
 

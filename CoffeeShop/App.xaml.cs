@@ -1,5 +1,5 @@
 ﻿//using CoffeeShop.Models;
-using CoffeeShop.Model;
+using CoffeeShop.Models;
 using CoffeeShop.ViewModel;
 using System;
 using System.Collections.Generic;

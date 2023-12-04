@@ -6,4 +6,6 @@
     <viewmodelAdmin:AdminViewModel x:Key="AdminVM"></viewmodelAdmin:AdminViewModel>
     <viewmodelAdmin:PosPageViewModel x:Key="PosVM"></viewmodelAdmin:PosPageViewModel>
     <viewmodelAdmin:MenuViewModel x:Key="MenuVM"></viewmodelAdmin:MenuViewModel>
+    <viewmodelAdmin:EmployeeManangementViewModel x:Key="EmployeeVM"></viewmodelAdmin:EmployeeManangementViewModel>
+    <viewmodelAdmin:HistoryViewModel x:Key="HistoryVM"></viewmodelAdmin:HistoryViewModel>
 </ResourceDictionary>
