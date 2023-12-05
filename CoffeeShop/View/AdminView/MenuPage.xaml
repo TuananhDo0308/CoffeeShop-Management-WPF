@@ -159,7 +159,7 @@
                                     <Grid Grid.Column="0">
                                             <Image Source="{Binding ImageData}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                                         
-                                        <Button  Command="{Binding DataContext.deleteProduct, ElementName=listBox}" Width="30" Height="30" Margin="10" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                        <Button  Command="{Binding DataContext.getImage, ElementName=listBox}" Width="30" Height="30" Margin="10" Style="{StaticResource MaterialDesignFloatingActionMiniButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                                             <materialDesign:PackIcon Kind="Add" Foreground="White" Height="24" Width="24" />
                                         </Button>
                                     </Grid>

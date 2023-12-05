@@ -92,7 +92,7 @@ namespace CoffeeShop.View.CashierView {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CoffeeShop;component/view/cashierview/cashierview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CoffeeShop;V1.0.0.0;component/view/cashierview/cashierview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\View\CashierView\CashierView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
