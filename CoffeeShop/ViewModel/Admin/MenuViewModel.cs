@@ -136,6 +136,16 @@ namespace CoffeeShop.ViewModel.Admin
                 OnPropertyChanged();
             }
         }
+        private byte[] newProductImage;
+        public byte[] NewProductImage
+        {
+            get => newProductImage;
+            set
+            {
+                newProductImage = value;
+                OnPropertyChanged();
+            }
+        }
         private string _nameStaff;
         public string NameStaff
         {
@@ -170,6 +180,7 @@ namespace CoffeeShop.ViewModel.Admin
 
         public ICommand getImage { get; set; }
 
+        public ICommand getImageNewProduct { get; set; }
 
 
 
@@ -196,6 +207,22 @@ namespace CoffeeShop.ViewModel.Admin
                         CollectionViewSource.GetDefaultView(listBox.ItemsSource).Refresh();
                     }
                 }
+            });
+            getImageNewProduct = new RelayCommand<object>((p) => { return true; }, (p) =>
+            {
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg;*.gif;*.bmp)|*.png;*.jpeg;*.jpg;*.gif;*.bmp|All files (*.*)|*.*";
+
+                    if (openFileDialog.ShowDialog() == true)
+                    {
+                        BitmapImage bitmapImage = new BitmapImage(new Uri(openFileDialog.FileName));
+
+                        // Convert BitmapImage to byte array
+                        NewProductImage= BitmapImageToByteArray(bitmapImage);
+
+                        // Update UI
+                    }
+                
             });
             getListBox = new RelayCommand<ListBox>((p) => { return true; }, (p) =>
             {
@@ -268,7 +295,7 @@ namespace CoffeeShop.ViewModel.Admin
             {
                 try
                 {
-                    var newProduct = new Models.Menu(0, null, newProductType, newProductName, newProductDescription, newProductPrice, true);
+                    var newProduct = new Models.Menu(0, newProductImage, newProductType, newProductName, newProductDescription, newProductPrice, true);
                     await MenuService.Ins.AddProduct(newProduct);
                     await LoadListProduct();
                     AddFoodWindow.Close();
