@@ -194,18 +194,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## Acknowledgments
-
-- **Instructor:** Trần Thanh Nhã, for guidance and support during the project.
-- **Team Members:**
-  - Đỗ Trần Tuấn Anh: Designed and coded login, sales, menu management, employee management, order processing, and SQL database; presented the project.
-  - Trần Quốc Ấn: Coded revenue statistics and history interfaces, recorded demo, designed SQL database, sourced images, and presented.
-  - Trịnh Quang Minh: Prepared the project report.
-  - Trần Quốc Long: Edited SQL database, populated data, and created PowerPoint slides.
-- **References:**
-  - [HowKteam: WPF - MVVM Inventory Management Software](https://www.howkteam.com) *(2018)*
-
----
 
 ## Future Development
 
