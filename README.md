@@ -10,8 +10,6 @@ This is a Windows-based desktop application developed using **C#**, **WPF**, and
 
 This project is a standalone application developed as part of a university assignment. The source code and related assets can be found in the project's repository:
 
-- **Source Code:** [Coffee Shop Management Software](https://github.com/TuananhDo0308/coffee-shop-management.git) *(Placeholder link, replace with actual repository if available)*
-
 ---
 
 ## Preview
